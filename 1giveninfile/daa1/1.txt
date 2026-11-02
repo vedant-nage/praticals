@@ -1,0 +1,52 @@
+2. Practical Write-up
+Aim
+To write a program to generate Fibonacci numbers and calculate the step count.
+Theory
+The Fibonacci sequence is a sequence in which each number is the sum of the two preceding numbers. It starts with 0 and 1.
+
+The recurrence relation is:
+\[
+F(n)=F(n-1)+F(n-2)
+\]
+
+The program uses an iterative approach. It stores the two previous values, prints the current value, and updates the pair for the next iteration.
+Methods and Terms Used
+- Fibonacci sequence: A sequence where each term is the sum of the previous two terms.
+- Iteration: Repeating a set of statements using a loop.
+- Step count: The number of times the main loop executes.
+- Time complexity: \(O(n)\), because the loop runs once for each requested term.
+- Space complexity: \(O(1)\), because only a fixed number of variables are used.
+Conclusion
+The program generates the required Fibonacci terms using an iterative method and counts the number of loop iterations. The step count is n for n terms.
+
+
+
+
+/////
+3. How to Explain It
+“I initialize two variables, a = 0 and b = 1, which are the first two Fibonacci numbers. The loop runs n times. In each iteration, I print a, then update the values so that a becomes the next Fibonacci number and b becomes the sum of the previous two. I increment the step count once per iteration. Therefore, the time complexity is O(n), and the extra space complexity is O(1).”## 1. Code for the Question
+def fibonacci(n):    a, b = 0, 1    step_count = 0    for i in range(n):        print(a, end=" ")        a, b = b, a + b        step_count += 1    print("\nStep count:", step_count)n = int(input("Enter number of Fibonacci terms: "))fibonacci(n)
+
+
+
+2. Practical Write-up
+Aim
+To generate Fibonacci numbers and calculate the step count using an iterative algorithm.
+Theory
+The Fibonacci sequence begins with 0 and 1. Each following number is the sum of the two preceding numbers.
+\[
+F(n)=F(n-1)+F(n-2)
+\]
+
+The program stores the two previous numbers and updates them in each loop iteration.
+Methods and Terms Used
+- Iteration: Repeating instructions using a loop.
+- Step count: Here, the number of times the main loop executes.
+- Time complexity: \(O(n)\), because the loop runs n times.
+- Space complexity: \(O(1)\), because the algorithm uses a fixed number of variables.
+Conclusion
+The program generates n Fibonacci numbers and counts the loop iterations. For n terms, the loop step count is n.
+3. How to Explain It
+“I initialize two variables, a = 0 and b = 1, which are the first two Fibonacci numbers. The loop runs n times. In each iteration, I print a, then update the variables so that a becomes the next Fibonacci number and b becomes the sum of the previous two numbers. I increase the step count once per iteration. Therefore, the time complexity is O(n), and the extra space complexity is O(1).”
+
+Note: This step count measures loop iterations, not every individual operation in the program.

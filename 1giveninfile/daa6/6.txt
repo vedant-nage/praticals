@@ -1,0 +1,55 @@
+2. Practical Write-up
+Aim
+To design an 8-Queens matrix with the first queen fixed and place the remaining queens using backtracking so that no two queens attack each other.
+Theory
+The 8-Queens problem requires placing eight queens on an \(8 \times 8\) chessboard so that no two queens share the same row, column, or diagonal.
+
+The first queen is fixed at the top-left position, \((0,0)\). The algorithm places one queen in each subsequent row. Before placing a queen, it checks whether the position is safe.
+
+If a placement prevents the remaining queens from being placed, the algorithm removes that queen and tries another column. This process is called backtracking.
+Methods and Terms Used
+- Backtracking: Builds a solution step by step and reverses a choice when it cannot lead to a valid solution.
+- Safe position: A square not attacked by any already placed queen.
+- Row-wise placement: Places one queen in each row, so row conflicts are avoided automatically.
+- Column check: Ensures no two queens share a column.
+- Diagonal check: Ensures no two queens share either diagonal.
+- Base case: When all eight rows have a queen, a valid solution is found.
+- Time complexity: Commonly expressed as \(O(N!)\) in the worst case for the standard backtracking search.
+- Space complexity: \(O(N^2)\) for the board, with up to \(O(N)\) recursion depth.
+Conclusion
+The program fixes the first queen and uses backtracking to place the remaining queens. It checks columns and diagonals before each placement and removes queens from invalid partial arrangements until a valid 8-Queens matrix is found.
+3. How to Explain It
+“The board is an 8-by-8 matrix. A value of 1 represents a queen, and 0 represents an empty square. The first queen is fixed at row 0, column 0.
+
+The algorithm places one queen in each row. Before placing a queen, is_safe() checks the column and both diagonals above the candidate position. We only need to check previous rows because queens are placed from top to bottom.
+
+If a safe position is found, the queen is placed and the algorithm moves to the next row. If no position works in a later row, the algorithm backtracks: it removes the previous queen and tries another column.
+
+When the row index reaches 8, all eight queens have been placed safely, so the algorithm returns the final matrix.”## 1. Code for the Question
+N = 8board = [[0] * N for _ in range(N)]def is_safe(row, col):    # Check the same column in earlier rows    for r in range(row):        if board[r][col] == 1:            return False    # Check upper-left diagonal    r, c = row - 1, col - 1    while r >= 0 and c >= 0:        if board[r][c] == 1:            return False        r -= 1        c -= 1    # Check upper-right diagonal    r, c = row - 1, col + 1    while r >= 0 and c < N:        if board[r][c] == 1:            return False        r -= 1        c += 1    return Truedef solve(row):    # All 8 queens have been placed    if row == N:        return True    # Fix the first queen at row 0, column 0    if row == 0:        board[0][0] = 1
+
+
+
+2. Practical Write-up
+Aim
+To place eight queens on an \(8 \times 8\) chessboard, with the first queen fixed, using backtracking.
+Theory
+The 8-Queens problem requires placing eight queens so that no two queens attack each other. Therefore, no two queens can share the same row, column, or diagonal.
+
+The first queen is fixed at position \((0,0)\). The algorithm then places one queen in each remaining row. Before placing a queen, it checks whether the position is safe. If a later row has no valid position, the algorithm removes the previously placed queen and tries another position. This process is called backtracking.
+Methods and Terms Used
+- Backtracking: Tries a possible choice, and reverses it if it cannot lead to a complete solution.
+- Safe position: A square not attacked by any previously placed queen.
+- Column check: Ensures that no two queens share a column.
+- Diagonal check: Ensures that no two queens share a diagonal.
+- Base case: When all eight rows have a queen, a solution has been found.
+- Time complexity: Commonly described as \(O(N!)\) in the worst case for the standard backtracking search.
+- Space complexity: \(O(N^2)\) for the board, plus \(O(N)\) recursion depth.
+Conclusion
+The program fixes the first queen and uses backtracking to place the remaining queens. It checks columns and diagonals to ensure a valid arrangement and prints the resulting 8-Queens matrix.
+3. How to Explain It
+“The board is represented by an 8-by-8 matrix. A 1 represents a queen and a 0 represents an empty square. The first queen is fixed at row 0, column 0.
+
+The algorithm places one queen in each row. The is_safe() function checks the candidate column and both diagonals above the current row. Since queens are placed from top to bottom, there is no need to check rows below.
+
+If a position is safe, the queen is placed and the algorithm moves to the next row. If no valid position is available later, the algorithm backtracks by removing the previous queen and trying another column. When the row index reaches 8, all queens have been placed successfully, and the matrix is printed.”

@@ -1,0 +1,449 @@
+For your **ML1 – Uber Fare Prediction** practical, these are the **most important viva theory questions and answers**. I’m keeping them practical-exam focused.
+
+## 1. What is Machine Learning?
+
+Machine Learning is a technique in which computers learn patterns from data and use those patterns to make predictions or decisions without being explicitly programmed for every case.
+
+---
+
+## 2. What type of Machine Learning is used here?
+
+It is **Supervised Learning** because the dataset contains input features and a known output/target, which is the **fare amount**.
+
+---
+
+## 3. Is this classification or regression?
+
+It is **Regression** because we are predicting a continuous numerical value, i.e., the **Uber fare/price**.
+
+**Classification** predicts categories, while **regression** predicts numerical values.
+
+---
+
+## 4. What is the target variable?
+
+The target variable is:
+
+```text
+fare_amount
+```
+
+It is the value that our model tries to predict.
+
+---
+
+## 5. What are the features used?
+
+Our main features are:
+
+```text
+distance_km
+hour
+dayofweek
+```
+
+These are used as inputs to predict the fare.
+
+---
+
+## 6. Why do we calculate distance?
+
+Pickup and drop-off locations are given as **latitude and longitude**. We calculate the distance between them because distance is an important factor affecting the fare.
+
+We use the **Haversine formula** to calculate the geographical distance between two points on Earth.
+
+---
+
+## 7. What is Haversine formula?
+
+The Haversine formula calculates the **great-circle distance between two points on the Earth's surface** using their latitude and longitude.
+
+In our program, the result is stored as:
+
+```python
+distance_km
+```
+
+---
+
+## 8. Why do we convert `pickup_datetime`?
+
+The original datetime contains information such as date and time. We extract useful features from it:
+
+```python
+hour
+dayofweek
+```
+
+These can help the model identify whether the fare varies according to time or day.
+
+---
+
+## 9. What is preprocessing?
+
+Preprocessing means preparing raw data before giving it to the machine-learning model.
+
+In our practical, preprocessing includes:
+
+- Checking missing values
+- Removing missing values
+- Converting datetime
+- Extracting hour and day
+- Calculating distance
+- Removing invalid values
+
+---
+
+## 10. What are missing values?
+
+Missing values are data entries where no value is available.
+
+We check them using:
+
+```python
+df.isnull().sum()
+```
+
+We remove rows containing missing values using:
+
+```python
+df.dropna()
+```
+
+---
+
+# Outliers
+
+## 11. What is an outlier?
+
+An outlier is a data value that is significantly different from the majority of the observations.
+
+For example, an unusually high Uber fare may be an outlier.
+
+---
+
+## 12. How did you identify outliers?
+
+We used **box plots** to visually identify potential outliers in:
+
+- Fare amount
+- Distance
+
+We then used the **99th percentile** to remove extreme values.
+
+---
+
+## 13. What is percentile?
+
+A percentile indicates the value below which a certain percentage of observations fall.
+
+For example, the **99th percentile** is the value below which approximately 99% of the observations lie.
+
+---
+
+## 14. Why remove outliers?
+
+Extreme values can negatively affect model training and evaluation. Removing unrealistic extreme values can help the model learn the normal relationship between features and fare.
+
+---
+
+# Correlation
+
+## 15. What is correlation?
+
+Correlation measures the strength and direction of the relationship between two variables.
+
+Its value ranges from:
+
+```text
+-1 to +1
+```
+
+- `+1` → strong positive relationship
+- `0` → no linear relationship
+- `-1` → strong negative relationship
+
+---
+
+## 16. What is a correlation heatmap?
+
+A correlation heatmap is a graphical representation of correlations between variables.
+
+In our practical, we use it to see the relationship between:
+
+```text
+fare_amount
+distance_km
+hour
+dayofweek
+```
+
+---
+
+## 17. Why is distance important for fare prediction?
+
+Generally, as the travel distance increases, the fare also tends to increase. Therefore, distance can have a strong positive relationship with fare.
+
+---
+
+# Linear Regression
+
+## 18. What is Linear Regression?
+
+Linear Regression is a supervised learning algorithm used to predict a continuous numerical value by finding a relationship between input features and the target.
+
+In our practical, it predicts **Uber fare**.
+
+---
+
+## 19. What is the basic equation of Linear Regression?
+
+For one feature:
+
+**y = b₀ + b₁x**
+
+Where:
+
+- `y` = predicted value
+- `b₀` = intercept
+- `b₁` = coefficient
+- `x` = input feature
+
+With multiple features, it becomes:
+
+**y = b₀ + b₁x₁ + b₂x₂ + ...**
+
+---
+
+## 20. What does Linear Regression try to minimize?
+
+It tries to minimize the difference between actual and predicted values, commonly using **Mean Squared Error (MSE)** during fitting.
+
+---
+
+# Random Forest
+
+## 21. What is Random Forest Regression?
+
+Random Forest Regression is an ensemble machine-learning algorithm that uses **multiple decision trees** to make a prediction.
+
+The predictions from the trees are combined, typically by taking their average for regression.
+
+---
+
+## 22. What is a decision tree?
+
+A decision tree makes predictions by repeatedly dividing data based on conditions on the input features.
+
+For example, it can make decisions based on:
+
+```text
+distance > certain value?
+hour > certain value?
+```
+
+---
+
+## 23. What does `n_estimators=100` mean?
+
+```python
+n_estimators=100
+```
+
+means the Random Forest creates **100 decision trees**.
+
+More trees can improve stability, but they also increase training time.
+
+---
+
+## 24. What does `random_state=42` mean?
+
+It makes the random operations **reproducible**.
+
+If we run the program again with the same data and settings, we are more likely to get the same results.
+
+**42 is just a chosen fixed number; it has no special mathematical meaning.**
+
+---
+
+## 25. What does `n_jobs=-1` mean?
+
+It tells Random Forest to use **all available CPU cores** to perform the computation, which can make training faster.
+
+---
+
+# Train-Test Split
+
+## 26. Why do we split the dataset?
+
+We divide the dataset into training and testing data.
+
+- **Training data** → used to train the model
+- **Testing data** → used to evaluate the trained model
+
+This helps us determine how well the model performs on unseen data.
+
+---
+
+## 27. What does `test_size=0.2` mean?
+
+```python
+test_size=0.2
+```
+
+means:
+
+- **80%** data → training
+- **20%** data → testing
+
+---
+
+# Evaluation Metrics
+
+## 28. What is R²?
+
+**R² (R-squared)** measures how well the model explains the variation in the target variable.
+
+Its value is generally interpreted as:
+
+- Higher R² → better performance
+- R² close to 1 → model explains much of the variation
+- R² close to 0 → model explains little of the variation
+
+---
+
+## 29. What is RMSE?
+
+**RMSE = Root Mean Squared Error.**
+
+It measures the difference between actual and predicted values.
+
+**Lower RMSE = better model.**
+
+RMSE gives more importance to larger errors because the errors are squared before taking the square root.
+
+---
+
+## 30. What is MSE?
+
+**MSE = Mean Squared Error.**
+
+It calculates the average squared difference between actual and predicted values.
+
+**Lower MSE = better.**
+
+RMSE is simply the square root of MSE.
+
+---
+
+## 31. What is MAE?
+
+**MAE = Mean Absolute Error.**
+
+It calculates the average absolute difference between actual and predicted values.
+
+**Lower MAE = better.**
+
+Your current code does **not** calculate MAE, so don't say that you displayed it.
+
+---
+
+# Your Actual Result
+
+You obtained:
+
+```text
+Linear Regression
+RMSE = 3.65
+R²   = 0.7715
+
+Random Forest
+RMSE = 3.77
+R²   = 0.7567
+```
+
+## 32. Which model performed better?
+
+**Linear Regression.**
+
+Because:
+
+```text
+RMSE:
+3.65 < 3.77       → Linear Regression is better
+
+R²:
+0.7715 > 0.7567   → Linear Regression is better
+```
+
+### Viva answer:
+
+> **“Linear Regression performed better because it has a lower RMSE of 3.65 and a higher R² score of 0.7715 compared to Random Forest.”**
+
+---
+
+# Very Important Differences
+
+## 33. Linear Regression vs Random Forest
+
+| Linear Regression | Random Forest |
+|---|---|
+| Uses a linear relationship | Uses multiple decision trees |
+| Simple model | More complex model |
+| Fast to train | Usually slower |
+| Works well for linear relationships | Can capture nonlinear relationships |
+| Easy to interpret | Less easily interpretable |
+
+---
+
+## 34. Why compare two models?
+
+We compare different models to determine which one provides better predictions for our dataset.
+
+We use metrics such as **R² and RMSE** for comparison.
+
+---
+
+## 35. What is overfitting?
+
+Overfitting occurs when a model learns the training data too closely, including its noise, and performs poorly on new/unseen data.
+
+---
+
+## 36. What is underfitting?
+
+Underfitting occurs when the model is too simple to properly learn the patterns in the data.
+
+---
+
+# ⭐ Top 10 Viva Questions to Definitely Remember
+
+1. **What type of problem is this?**  
+   → Supervised regression problem.
+
+2. **What is the target variable?**  
+   → `fare_amount`.
+
+3. **Why calculate distance?**  
+   → Distance is an important factor affecting fare.
+
+4. **Which formula is used for geographical distance?**  
+   → Haversine formula.
+
+5. **What is an outlier?**  
+   → An unusually different observation.
+
+6. **How did you identify outliers?**  
+   → Box plots and 99th percentile.
+
+7. **What is correlation?**  
+   → It measures the relationship between variables.
+
+8. **What does R² indicate?**  
+   → How well the model explains variation in the target; **higher is better**.
+
+9. **What does RMSE indicate?**  
+   → Prediction error; **lower is better**.
+
+10. **Which model performed better in your result?**  
+   → **Linear Regression**, because it has lower RMSE and higher R².

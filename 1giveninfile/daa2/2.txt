@@ -1,0 +1,115 @@
+2. Practical Write-up
+Aim
+To implement the Job Sequencing with Deadlines problem using a greedy method to maximize total profit.
+Theory
+In Job Sequencing with Deadlines, each job has a deadline and a profit. Each job takes one unit of time, and it must be completed on or before its deadline to earn its profit.
+
+The greedy method sorts jobs in decreasing order of profit. For each job, it assigns the latest available time slot before its deadline. This keeps earlier slots available for jobs with tighter deadlines.
+Methods and Terms Used
+- Greedy method: Selects the locally best available choice at each step.
+- Deadline: The latest time by which a job must be completed.
+- Profit: The reward earned by completing a job before its deadline.
+- Time slot: A unit of time allocated to a job.
+- Objective: Maximize the total profit of scheduled jobs.
+- Time complexity: \(O(n \log n + nD)\), where \(n\) is the number of jobs and \(D\) is the maximum deadline. Sorting takes \(O(n \log n)\), and slot searching takes up to \(O(nD)\).
+Conclusion
+The greedy algorithm schedules jobs in decreasing order of profit while placing each job in the latest available slot before its deadline. This produces a schedule with maximum total profit under the unit-time job assumption.
+
+
+
+
+
+//
+3. How to Explain It
+“Each job has an ID, a deadline, and a profit. First, I sort all jobs in decreasing order of profit. Then I examine each job and try to place it in the latest free time slot that is not after its deadline. If a slot is available, I schedule the job and add its profit. If no valid slot is free, I skip that job. Finally, I print the scheduled jobs and the total profit.”
+
+For the sample: the algorithm schedules J3, J1, and J5, giving a total profit of 142.
+
+
+
+
+3. How to Explain It
+A. Understand the problem
+Suppose the input is:
+Job	Deadline	Profit
+J1	2	100
+J2	1	19
+J3	2	27
+J4	1	25
+J5	3	15
+
+Every job takes one unit of time. A job with deadline 2 can be completed in slot 1 or slot 2, but not after slot 2.
+
+We want to select jobs that earn the highest possible total profit while respecting their deadlines.
+B. Why use a greedy method?
+A greedy algorithm makes a locally best choice at each step. Here, the local choice is to consider the job with the highest profit first.
+
+However, simply placing each job in the first free slot is not ideal. The program instead places it in the latest free slot before its deadline. That leaves earlier slots available for jobs that have tighter deadlines.
+C. Explain the code step by step
+1. Sort jobs by profit
+jobs.sort(key=lambda job: job[2], reverse=True)
+
+
+
+Each job is stored as (job_id, deadline, profit). Index 2 contains the profit. Sorting in reverse order puts the highest-profit job first.
+
+After sorting, the order is:
+
+J1 (profit 100), J3 (27), J4 (25), J2 (19), J5 (15)
+
+2. Create the time slots
+max_deadline = max(job[1] for job in jobs)slots = [None] * max_deadline
+
+
+
+The maximum deadline is 3, so the program creates three slots:
+
+[None, None, None]
+
+In Python, the list uses indexes 0, 1, and 2, which represent time slots 1, 2, and 3 respectively. None means that the slot is empty.
+
+3. Examine each job
+for job_id, deadline, profit in jobs:
+
+
+
+The loop takes each job in descending profit order.
+
+4. Search backward for a free slot
+for slot in range(min(deadline, max_deadline) - 1, -1, -1):
+
+
+
+The search begins at the job’s deadline and moves backward. The -1 adjusts the deadline to a zero-based list index. Searching backward means the job is placed as late as possible without missing its deadline.
+
+5. Schedule the job if a slot is free
+if slots[slot] is None:    slots[slot] = job_id    total_profit += profit    break
+
+
+
+If the slot is empty, the job is assigned there, its profit is added, and break stops searching for that job. If no valid slot is free, the job is skipped.
+D. Trace the example
+Job considered	Slot chosen	Reason
+J1	2	Highest profit; slot 2 is free
+J3	1	Slot 2 is occupied, so use slot 1
+J4	Not scheduled	Its only valid slot is occupied
+J2	Not scheduled	Its only valid slot is occupied
+J5	3	Slot 3 is free
+
+The final schedule is:
+Time slot	Job
+1	J3
+2	J1
+3	J5
+
+Total profit:
+\[
+27 + 100 + 15 = 142
+\]
+
+E. Complexity
+- Sorting the jobs takes \(O(n\log n)\).
+- In the worst case, each job may search through up to \(D\) slots, taking \(O(nD)\).
+- Therefore, the total time complexity is \(O(n\log n+nD)\).
+- The slot list uses \(O(D)\) additional space.
+Key point for the viva: The greedy choice is not just “take the highest profit.” It is take jobs in descending profit order and place each in the latest available slot before its deadline.

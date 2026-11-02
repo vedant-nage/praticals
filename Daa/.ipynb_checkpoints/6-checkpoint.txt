@@ -1,0 +1,173 @@
+3. Practical Write-up
+Aim
+To implement and analyze deterministic and randomized Quick Sort algorithms in Python.
+Theory
+Quick Sort is a divide-and-conquer sorting algorithm. It selects a pivot element, partitions the array around the pivot, and recursively sorts the resulting subarrays.
+
+Deterministic Quick Sort selects the pivot using a fixed rule, such as choosing the last element.
+
+Randomized Quick Sort selects the pivot randomly, reducing the likelihood of consistently poor partitions for particular input arrangements.
+Algorithm
+1. Start.
+2. Accept an array of elements.
+3. Select a pivot using the deterministic or randomized method.
+4. Partition the array into elements smaller than or equal to the pivot and elements greater than the pivot.
+5. Recursively sort both partitions.
+6. Combine the sorted partitions and pivot.
+7. Display the sorted array and execution time.
+8. Stop.
+Time Complexity Analysis
+Case	Deterministic Quick Sort	Randomized Quick Sort
+Best	O(n log n)	O(n log n)
+Average	O(n log n)	O(n log n) expected
+Worst	O(n²)	O(n²)
+Auxiliary space	O(n) for this implementation	O(n) for this implementation
+
+The worst case occurs when partitions are highly unbalanced, such as when the pivot is repeatedly the smallest or largest element.
+
+Randomized Quick Sort reduces the likelihood of this happening, but it does not eliminate the worst case.
+Result
+Both deterministic and randomized Quick Sort were successfully implemented in Python. The algorithms sorted the input array and their execution times were compared.
+
+
+
+///
+
+
+# Quick Sort: Explanation and Viva Questions
+
+## 1. Explanation of the program
+
+Quick Sort is a sorting algorithm that uses the divide-and-conquer technique. It selects a pivot, divides the array into smaller parts, and recursively sorts those parts.
+
+There are two variants:
+
+- Deterministic Quick Sort: Selects the pivot using a fixed rule, such as choosing the last element.
+- Randomized Quick Sort: Selects the pivot randomly to reduce the chance of repeatedly getting unbalanced partitions.
+
+### Example
+
+Consider the array:
+
+`[8, 3, 1, 7, 0, 10, 2]`
+
+For deterministic Quick Sort, the last element, `2`, is selected as the pivot.
+
+After partitioning:
+
+`[1, 0] + [2] + [8, 3, 7, 10]`
+
+The pivot is now in its correct position. The algorithm recursively sorts the left and right partitions.
+
+For randomized Quick Sort, a random element is selected as the pivot, but the partitioning and recursive sorting process remains the same.
+
+### How the program works
+
+1. Accept an array of elements from the user.
+2. Select a pivot.
+3. Divide the array into two parts based on the pivot.
+4. Recursively sort both parts.
+5. Combine the sorted parts and pivot.
+6. Display the sorted array and execution time.
+
+## 2. Viva Questions and Answers
+
+### Basic questions
+
+1\. What is Quick Sort?
+
+Quick Sort is a comparison-based sorting algorithm that uses the divide-and-conquer technique to sort elements.
+
+2\. What is divide and conquer?
+
+It is a technique that divides a problem into smaller subproblems, solves them independently, and combines their results.
+
+3\. What is a pivot?
+
+A pivot is an element selected to divide the array into smaller and larger elements.
+
+4\. What is partitioning?
+
+Partitioning is the process of rearranging elements so that elements smaller than or equal to the pivot appear before it, and larger elements appear after it.
+
+5\. What is the difference between deterministic and randomized Quick Sort?
+
+Deterministic Quick Sort selects the pivot using a fixed rule, whereas randomized Quick Sort selects the pivot randomly.
+
+### Algorithm-related questions
+
+6\. Why is randomized Quick Sort preferred in some cases?
+
+Randomized pivot selection reduces the likelihood of consistently unbalanced partitions for particular input arrangements.
+
+7\. What happens when the pivot is the smallest or largest element?
+
+The partition becomes highly unbalanced, potentially causing the algorithm to take O(n²) time.
+
+8\. Is Quick Sort a stable sorting algorithm?
+
+No. Standard Quick Sort does not preserve the relative order of equal elements.
+
+9\. Is Quick Sort an in-place sorting algorithm?
+
+The standard partition-based Quick Sort is in-place because it rearranges elements within the original array. However, the Python implementation provided above creates additional lists, so it is not strictly in-place.
+
+10\. Why is recursion used in Quick Sort?
+
+Recursion is used to sort the smaller partitions until the base case is reached.
+
+### Complexity-related questions
+
+11\. What is the best-case time complexity?
+
+O(n log n), when the partitions are approximately equal in size.
+
+12\. What is the average-case time complexity?
+
+O(n log n).
+
+13\. What is the worst-case time complexity?
+
+O(n²), when partitions are repeatedly highly unbalanced.
+
+14\. What is the expected time complexity of randomized Quick Sort?
+
+O(n log n), because random pivot selection gives balanced partitions in expectation.
+
+15\. What is the space complexity?
+
+For the provided Python implementation, auxiliary space is O(n) because it creates new lists during partitioning. The standard in-place version uses O(log n) expected recursion stack space and O(n) in the worst case.
+
+### Practical-based questions
+
+16\. What is the base case of Quick Sort?
+
+When the array contains zero or one element, it is already sorted.
+
+17\. Why do we use `random.randint()` in randomized Quick Sort?
+
+It selects a random index from the array to choose the pivot.
+
+18\. What is the purpose of `time.perf_counter()`?
+
+It measures elapsed time with high precision, allowing us to compare the execution times of the two algorithms.
+
+19\. Will both variants always produce the same sorted array?
+
+Yes. Both variants sort the same input into ascending order, even if they select different pivots.
+
+20\. Which variant is better?
+
+Randomized Quick Sort is generally more robust against unfavorable input arrangements, while deterministic Quick Sort is simpler and predictable in its pivot selection.
+
+## 3. Important questions to prepare
+
+Focus on these five questions for your practical exam:
+
+1. What is Quick Sort and how does divide and conquer work?
+2. What is the difference between deterministic and randomized Quick Sort?
+3. What is a pivot and what is partitioning?
+4. Explain the best, average, and worst-case time complexity.
+5. Why does randomized Quick Sort reduce the likelihood of worst-case performance?
+
+Remember: Quick Sort works by partitioning around a pivot. The randomized variant changes only how the pivot is selected, not the fundamental sorting process.

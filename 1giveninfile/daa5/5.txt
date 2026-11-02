@@ -1,0 +1,33 @@
+DAA5. Write a program to generate binomial coefficients using dynamic programming.
+2. Practical Write-up
+Aim
+To generate binomial coefficients using dynamic programming.
+Theory
+A binomial coefficient \(\binom{n}{k}\) gives the number of ways to choose k objects from n objects. It can be calculated using Pascal’s identity:
+\[
+\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}
+\]
+
+The boundary values are:
+\[
+\binom{n}{0}=1,\qquad \binom{n}{n}=1
+\]
+
+Dynamic programming stores previously calculated coefficients in a table and uses them to calculate the next values.
+Methods and Terms Used
+- Binomial coefficient: Number of ways to choose k objects from n.
+- Pascal’s identity: Each interior coefficient is the sum of the two coefficients above it.
+- Dynamic programming: Stores and reuses results of smaller subproblems.
+- DP table: Stores coefficients for different values of n and k.
+- Time complexity: \(O(n^2)\), since the table contains approximately \(n^2\) entries.
+- Space complexity: \(O(n^2)\), for storing the table.
+Conclusion
+The program generates binomial coefficients by filling a dynamic programming table using Pascal’s identity. It avoids repeated calculations by reusing previously computed values.## 3. How to Explain It
+
+“Binomial coefficients are the values in Pascal’s triangle. The first and last values in each row are 1. Every value between them is the sum of the two values directly above it.
+
+I create a two-dimensional table to store the coefficients. I fill each row from left to right. If the column is the first or last position in the row, I assign 1. Otherwise, I use Pascal’s identity to add the two values from the previous row.
+
+For example, row 4 is 1 4 6 4 1. The middle value 6 is calculated as 3 + 3 from row 3.
+
+The algorithm takes \(O(n^2)\) time and \(O(n^2)\) space because it fills a triangular table with values up to row n.”

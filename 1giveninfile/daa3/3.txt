@@ -1,0 +1,29 @@
+2. Practical Write-up
+Aim
+To solve the Fractional Knapsack problem using a greedy algorithm and maximize the total value within a given weight capacity.
+Theory
+In the Fractional Knapsack problem, each item has a weight and a value. Unlike the 0/1 Knapsack problem, an item may be divided, allowing part of it to be selected.
+
+The greedy method calculates each item's value-to-weight ratio and selects items in descending order of this ratio. If the next item does not fit completely, the algorithm takes only the fraction that fits.
+Methods and Terms Used
+- Greedy method: Chooses the best available option at each step.
+- Knapsack capacity: Maximum total weight that can be carried.
+- Value-to-weight ratio: Value divided by weight; used to rank items.
+- Fractional selection: Taking only part of an item when its full weight does not fit.
+- Time complexity: \(O(n\log n)\), mainly due to sorting the items.
+- Space complexity: \(O(n)\) for storing the selected items.
+Conclusion
+The Fractional Knapsack problem was solved using a greedy strategy. Items were selected in descending order of value-to-weight ratio, allowing a fraction of the final item when necessary. This maximizes the total value for the given capacity.
+3. How to Explain It
+“Each item has a weight and a value, and the knapsack has a fixed capacity. Since this is the fractional Knapsack problem, I can take part of an item.
+
+First, I calculate each item’s value-to-weight ratio:
+\[
+\text{Ratio}=\frac{\text{Value}}{\text{Weight}}
+\]
+
+Then I sort the items from highest ratio to lowest. I take each item completely if it fits. If it does not fit, I take only the fraction that fills the remaining capacity, then stop.
+
+For the example, item A has ratio 6, item B has ratio 5, and item C has ratio 4. I take A and B completely, using 30 units of capacity and gaining 160 value. The remaining capacity is 20, so I take \(20/30\) of item C, gaining 80 more. The maximum value is therefore 240.”
+
+Key viva point: Greedy by value-to-weight ratio gives an optimal solution for the fractional Knapsack problem. It does not always give an optimal solution for the 0/1 Knapsack problem, where items cannot be divided.

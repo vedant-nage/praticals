@@ -1,0 +1,450 @@
+Yes. Looking at your **exact BCT syllabus**, you do **not** need every blockchain topic in depth. For practical/viva and basic theory, focus on these concepts unit-wise.
+
+# BCT Basic & Important Theory
+
+## Unit I — Introduction to Blockchain
+
+### 1. Cryptography
+Cryptography is the technique of protecting information by converting it into a secure form.
+
+In blockchain, cryptography is mainly used for:
+- Securing transactions
+- Creating digital signatures
+- Maintaining data integrity
+- Generating hashes
+
+### 2. Symmetric Cryptography
+In symmetric cryptography, **the same key is used for encryption and decryption**.
+
+```text
+Plaintext → Encryption + Key → Ciphertext
+Ciphertext → Decryption + Same Key → Plaintext
+```
+
+It is fast but requires securely sharing the key.
+
+### 3. Asymmetric Cryptography
+Asymmetric cryptography uses **two keys**:
+
+- Public key
+- Private key
+
+The public key can be shared, while the private key must remain secret.
+
+Blockchain wallets use asymmetric cryptography for accounts and transaction signing.
+
+### 4. Hash Function
+A hash function converts data into a fixed-size hash value.
+
+```text
+Data → Hash Function → Hash
+```
+
+Important properties:
+- Same input produces the same hash.
+- Small input change produces a different hash.
+- It is computationally difficult to reverse.
+- Used to maintain blockchain data integrity.
+
+### 5. Digital Signature
+A digital signature is used to **prove that a transaction was authorized by the owner of the account**.
+
+It provides:
+- Authentication
+- Integrity
+- Non-repudiation
+
+### 6. Symmetric vs Asymmetric
+
+| Symmetric | Asymmetric |
+|---|---|
+| One key | Two keys |
+| Same key for encryption/decryption | Public and private keys |
+| Faster | Comparatively slower |
+| Key sharing is difficult | Public key can be shared |
+
+---
+
+# Unit II — Blockchain Platforms and Consensus
+
+### 7. What is Blockchain?
+
+Blockchain is a **distributed and decentralized digital ledger** in which transactions are stored in blocks connected using cryptographic hashes.
+
+Main features:
+- Decentralization
+- Transparency
+- Immutability
+- Security
+- Distributed ledger
+
+### 8. Block
+
+A block is a collection of blockchain transactions/data.
+
+A block generally contains:
+- Transactions
+- Timestamp
+- Previous block hash
+- Block hash
+- Other blockchain-specific information
+
+### 9. Distributed Ledger
+
+A distributed ledger is a database that is **shared and maintained by multiple nodes** instead of one central authority.
+
+### 10. Node
+
+A node is a computer participating in a blockchain network.
+
+Nodes may:
+- Store blockchain data
+- Verify transactions
+- Communicate with other nodes
+- Participate in consensus
+
+### 11. Decentralization
+
+Decentralization means blockchain does not depend on a **single central authority**.
+
+Instead, multiple nodes participate in maintaining and validating the network.
+
+---
+
+# Consensus
+
+### 12. Consensus Mechanism
+
+Consensus is the method through which blockchain participants **agree on the valid state of the blockchain**.
+
+It helps prevent invalid transactions and maintains agreement among nodes.
+
+### 13. Proof of Work — PoW
+
+In Proof of Work, miners perform computational work to validate transactions and add blocks.
+
+**Example:** Bitcoin.
+
+Main disadvantage:
+- High computational power
+- High energy consumption
+
+### 14. Proof of Stake — PoS
+
+In Proof of Stake, validators participate in block validation based on their stake in the network.
+
+**Example:** Ethereum.
+
+Compared with PoW, it requires much less computational energy.
+
+### 15. Proof of Authority — PoA
+
+In Proof of Authority, selected and trusted validators are responsible for validating transactions and creating blocks.
+
+It is commonly useful in **private/permissioned blockchain networks**.
+
+### 16. PoW vs PoS vs PoA
+
+| PoW | PoS | PoA |
+|---|---|---|
+| Miners | Validators | Authorized validators |
+| Computational work | Stake | Identity/authority |
+| High energy use | Lower energy use | Efficient |
+| Bitcoin | Ethereum | Permissioned networks |
+
+---
+
+# Unit III — Cryptocurrencies
+
+### 17. Cryptocurrency
+
+Cryptocurrency is a **digital/virtual asset that uses cryptography and blockchain technology** to secure transactions.
+
+Examples:
+- Bitcoin
+- Ether
+- Litecoin
+
+### 18. Bitcoin
+
+Bitcoin is a decentralized cryptocurrency introduced by **Satoshi Nakamoto**.
+
+It uses:
+- Blockchain
+- Proof of Work
+- Cryptography
+- Peer-to-peer transactions
+
+### 19. Ether
+
+Ether (**ETH**) is the native cryptocurrency of the Ethereum network.
+
+It is used for:
+- Transactions
+- Gas fees
+- Smart-contract interactions
+
+### 20. Bitcoin vs Ethereum
+
+| Bitcoin | Ethereum |
+|---|---|
+| Primarily digital currency | Blockchain platform + cryptocurrency |
+| BTC | ETH |
+| Uses PoW | Uses PoS |
+| Focuses mainly on payments | Supports smart contracts and DApps |
+
+---
+
+# Unit IV — Ethereum
+
+This unit is **very important for your BCT2, BCT3 and BCT4 practicals.**
+
+### 21. Ethereum
+
+Ethereum is a blockchain platform that supports **smart contracts and decentralized applications (DApps).**
+
+### 22. Ethereum Network
+
+Ethereum consists of nodes that maintain and validate the blockchain.
+
+You may encounter:
+- Mainnet — real network
+- Testnet — testing network
+
+### 23. Smart Contract
+
+A smart contract is a **program stored on the blockchain that automatically executes according to predefined rules**.
+
+Your BCT3 bank contract is an example.
+
+```text
+User
+ ↓
+Smart Contract
+ ↓
+Blockchain
+```
+
+### 24. Solidity
+
+Solidity is a programming language used to develop **smart contracts for Ethereum-compatible blockchains**.
+
+Your BCT3 and BCT4 programs are written in Solidity.
+
+### 25. DApp
+
+DApp means **Decentralized Application**.
+
+It generally consists of:
+- Frontend/application
+- Smart contracts
+- Blockchain
+
+Unlike traditional applications, important logic/data can be handled through decentralized blockchain infrastructure.
+
+### 26. Ethereum Account
+
+An Ethereum account is identified by an Ethereum address.
+
+Two broad types are:
+
+- **Externally Owned Account (EOA)** — controlled by a private key
+- **Contract Account** — controlled by smart contract code
+
+**MetaMask normally manages EOAs.**
+
+---
+
+# Ethereum Transactions & Gas
+
+### 27. Transaction
+
+A transaction is an operation submitted to the Ethereum blockchain.
+
+Examples:
+- Sending ETH
+- Deploying a smart contract
+- Depositing money into a contract
+- Calling a state-changing contract function
+
+### 28. Gas
+
+Gas measures the **computational work required to execute an operation on Ethereum**.
+
+More computation generally means more gas is required.
+
+### 29. Gas Used
+
+Gas used is the **actual amount of gas consumed** by a transaction.
+
+### 30. Gas Limit
+
+Gas limit is the **maximum amount of gas allowed for a transaction**.
+
+### 31. Gas Price
+
+Gas price is the amount paid for each unit of gas.
+
+It is commonly expressed in **gwei**.
+
+### 32. Transaction Fee
+
+The transaction fee is the cost paid to process a transaction.
+
+Basic idea:
+
+**Transaction Fee ≈ Gas Used × Gas Price**
+
+This is directly important for your **BCT4 practical**, where you have to observe gas values and transaction fees.
+
+---
+
+# MetaMask & Wallet
+
+### 33. Crypto Wallet
+
+A crypto wallet is used to **manage blockchain accounts and cryptographic keys** and interact with blockchain networks.
+
+The actual cryptocurrency balance is recorded on the blockchain.
+
+### 34. MetaMask
+
+MetaMask is a cryptocurrency wallet that allows users to:
+
+- Create/manage Ethereum accounts
+- Send and receive crypto
+- Connect to DApps
+- Sign transactions
+- Interact with smart contracts
+
+This is directly related to **BCT2**.
+
+### 35. Public Address
+
+A public address identifies an account on the blockchain.
+
+It can be shared to receive cryptocurrency.
+
+### 36. Private Key
+
+A private key is a secret key used to **sign and authorize transactions**.
+
+**Never share it.**
+
+### 37. Recovery Phrase
+
+A recovery/seed phrase is a sequence of words used to restore a wallet.
+
+It must be kept secret and secure.
+
+---
+
+# Important Solidity Concepts for BCT3 & BCT4
+
+### 38. `address`
+
+Stores a blockchain address.
+
+```solidity
+address public owner;
+```
+
+### 39. `mapping`
+
+Stores data in key-value form.
+
+```solidity
+mapping(address => uint) public balance;
+```
+
+Here:
+
+```text
+Address → Balance
+```
+
+Very important for your **Bank Account practical**.
+
+### 40. `msg.sender`
+
+Represents the **address that called the current function**.
+
+For example, if a user calls `deposit()`, `msg.sender` identifies that user's address.
+
+### 41. `msg.value`
+
+Represents the **amount of Ether sent with the transaction**, measured in wei.
+
+### 42. `payable`
+
+A function declared `payable` can receive Ether.
+
+```solidity
+function deposit() public payable {
+}
+```
+
+### 43. `require()`
+
+Used to check a condition.
+
+```solidity
+require(balance[msg.sender] >= amount);
+```
+
+If the condition is false, the transaction is reverted.
+
+### 44. Structure
+
+A `struct` creates a custom data type containing multiple fields.
+
+```solidity
+struct Student {
+    uint id;
+    string name;
+    uint age;
+}
+```
+
+This is directly related to **BCT4**.
+
+### 45. Array
+
+An array stores multiple values.
+
+```solidity
+Student[] public students;
+```
+
+This can store multiple student records.
+
+### 46. Fallback
+
+A fallback function is a special Solidity function that handles calls that don't match an existing function and can also receive Ether when appropriate.
+
+```solidity
+fallback() external payable {
+}
+```
+
+### 47. `receive()`
+
+`receive()` is used to handle Ether sent to a contract **with empty calldata**.
+
+```solidity
+receive() external payable {
+}
+```
+
+---
+
+# ⭐ What You Should Actually Study for the Practical
+
+Don't try to memorize the whole syllabus. For **BCT2–BCT4 practical viva**, this order is enough:
+
+
+
+### Lower priority for these practicals
+From your syllabus, **advanced cryptography details, Hyperledger architecture, detailed cryptocurrency types, and detailed blockchain case studies** are more theory/exam topics and are less directly needed for BCT2–BCT4 practical execution.
+
+If you're preparing specifically for the **practical viva**, the 36 topics above are the core set.

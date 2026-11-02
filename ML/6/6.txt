@@ -1,0 +1,160 @@
+For **ML6 practical exam**, focus on these theory points. These are the most likely things the examiner can ask about **K-Means, Hierarchical Clustering, and Elbow Method**.
+
+## 1. Clustering
+
+- **Clustering** is an **unsupervised machine learning** technique used to group similar data points into clusters.
+- Data points within the same cluster should be **more similar** to each other than to points in other clusters.
+- It does not require a predefined target/output label.
+- Examples: customer segmentation, sales analysis, grouping products, etc.
+
+---
+
+## 2. K-Means Clustering
+
+- **K-Means** is an unsupervised clustering algorithm that divides data into **K clusters**.
+- Each cluster has a **centroid**, which represents the center of that cluster.
+- The algorithm assigns each data point to the nearest centroid and repeatedly updates the centroids.
+- The value of **K** represents the number of clusters we want to create.
+
+### Basic steps
+
+1. Choose the number of clusters **K**.
+2. Select initial centroids.
+3. Assign each data point to the nearest centroid.
+4. Calculate new centroids.
+5. Repeat the assignment and centroid calculation until the clusters become stable.
+
+### Important formula
+
+**Euclidean Distance:**
+
+\[
+d=\sqrt{\sum (x_i-y_i)^2}
+\]
+
+It is used to find how close a data point is to a centroid.
+
+---
+
+## 3. Centroid
+
+- A **centroid** is the mean/average position of all data points belonging to a cluster.
+- K-Means uses centroids to represent clusters.
+- After assigning points to clusters, the centroid is recalculated.
+- The process continues until the centroids change very little.
+
+---
+
+## 4. Choosing K using Elbow Method ⭐
+
+- The **Elbow Method** is used to determine a suitable number of clusters (**K**).
+- We run K-Means for different values of K and calculate the **Within-Cluster Sum of Squares (WCSS)**.
+- As K increases, WCSS decreases because data points are divided into more clusters.
+- We select the value of K at the **elbow point**, where further increase in K gives only a small improvement.
+
+### WCSS
+
+**WCSS = Sum of squared distances between each data point and its cluster centroid.**
+
+- Lower WCSS → clusters are more compact.
+- Very high K can cause unnecessary clustering.
+- The elbow gives a balance between **cluster quality and number of clusters**.
+
+**Exam line:**  
+> The elbow point in the WCSS vs K graph is selected as the optimal number of clusters.
+
+---
+
+## 5. Hierarchical Clustering
+
+- Hierarchical clustering is an unsupervised technique that creates a **hierarchy of clusters**.
+- It is usually represented using a **dendrogram**.
+- Unlike K-Means, we do not necessarily need to specify K at the beginning.
+- Clusters can be obtained by cutting the dendrogram at a selected level.
+
+### Two types
+
+**Agglomerative:**  
+Starts with each data point as an individual cluster and repeatedly merges the closest clusters.
+
+**Divisive:**  
+Starts with one large cluster and repeatedly divides it into smaller clusters.
+
+**Most commonly used:** Agglomerative hierarchical clustering.
+
+---
+
+## 6. Dendrogram ⭐
+
+- A **dendrogram** is a tree-like diagram used to represent hierarchical clustering.
+- It shows which clusters are merged and at what distance.
+- The height of a merge represents the **distance/dissimilarity** between clusters.
+- By drawing a horizontal cut through the dendrogram, we can determine the number of clusters.
+
+---
+
+## 7. Difference between K-Means and Hierarchical Clustering
+
+| K-Means | Hierarchical |
+|---|---|
+| Divides data into K clusters | Creates a hierarchy of clusters |
+| Requires K beforehand | K can be selected by cutting dendrogram |
+| Uses centroids | Uses distances/linkage |
+| Generally faster | Generally more computationally expensive |
+| Produces final clusters | Produces a dendrogram |
+
+---
+
+## 8. Linkage in Hierarchical Clustering
+
+**Linkage** determines how the distance between two clusters is calculated.
+
+Important types:
+
+- **Single linkage:** Minimum distance between two clusters.
+- **Complete linkage:** Maximum distance between two clusters.
+- **Average linkage:** Average distance between points of two clusters.
+- **Ward linkage:** Merges clusters while minimizing increase in within-cluster variance.
+
+---
+
+## 9. Why preprocessing/scaling is important?
+
+- Clustering algorithms use **distance calculations**.
+- Features with larger numerical ranges can dominate the distance calculation.
+- Therefore, numerical features are often **standardized or normalized** before clustering.
+- This helps all features contribute more fairly.
+
+---
+
+## 10. Questions examiner may ask ⭐
+
+**Q1. What is clustering?**  
+Grouping similar data points together without using predefined labels.
+
+**Q2. Is K-Means supervised or unsupervised?**  
+Unsupervised.
+
+**Q3. What does K represent?**  
+The number of clusters.
+
+**Q4. What is a centroid?**  
+The mean/center of the data points in a cluster.
+
+**Q5. Why do we use the elbow method?**  
+To determine a suitable value of K.
+
+**Q6. What is WCSS?**  
+The sum of squared distances of data points from their respective cluster centroids.
+
+**Q7. What is a dendrogram?**  
+A tree-like diagram showing the hierarchy of clusters.
+
+**Q8. What is the most common type of hierarchical clustering?**  
+Agglomerative clustering.
+
+**Q9. What happens when K increases in K-Means?**  
+WCSS generally decreases.
+
+**Q10. Why is scaling required?**  
+Because clustering is distance-based, and features with larger scales can dominate the result.

@@ -1,0 +1,169 @@
+ML5 – K-Nearest Neighbors (KNN) Theory
+Practical and Viva Examination Notes
+1. K-Nearest Neighbors (KNN)
+
+KNN is a supervised machine learning algorithm mainly used for classification. It predicts the class of a new data point by finding the K closest training points. The class having the majority of neighbors is selected as the prediction.
+
+2. K in KNN
+
+K represents the number of nearest neighbors considered for prediction. For example, K = 5 means the algorithm considers the five closest data points. A small K may be sensitive to noise, while a large K may make the model too generalized.
+
+3. Distance in KNN
+
+KNN determines the nearest points using a distance measure. The commonly used distance is Euclidean distance. A smaller distance means that two data points are more similar or closer to each other.
+
+4. Euclidean Distance
+
+Euclidean distance measures the straight-line distance between two points. For two features, it is calculated as:
+
+d = √[(x₁ − y₁)² + (x₂ − y₂)²]
+
+KNN uses this distance to identify the nearest neighbors.
+
+5. Majority Voting
+
+After finding K nearest neighbors, KNN checks their class labels. The class occurring the most number of times is selected as the prediction. For example, if 3 out of 5 neighbors are diabetic, the prediction is diabetic.
+
+6. Supervised Learning
+
+KNN is a supervised learning algorithm because it learns from data where the correct output/class is already known. In this practical, Outcome is the target containing 0 or 1.
+
+7. Classification
+
+Classification is a machine learning task where the output belongs to a predefined class. In this practical, KNN classifies patients into Non-Diabetic (0) or Diabetic (1) based on their medical features.
+
+8. Diabetes Dataset
+
+The dataset contains 768 patient records and 9 columns. It contains eight input features such as Glucose, BloodPressure, BMI and Age, while Outcome is the target variable.
+
+9. Features
+
+Features are the input variables used by the machine learning model to make predictions. In this dataset, features include Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, Pedigree and Age.
+
+10. Target Variable
+
+The target variable is the output that the model tries to predict. In the diabetes dataset, the target is Outcome. 0 represents non-diabetic and 1 represents diabetic.
+
+11. Feature Scaling
+
+Feature scaling converts different features to a comparable numerical scale. It is important for KNN because KNN uses distance calculations. This practical uses StandardScaler for scaling the features.
+
+12. StandardScaler
+
+StandardScaler standardizes the features using their mean and standard deviation. The basic formula is:
+
+z = (x − μ) / σ
+
+This prevents features with larger numerical values from dominating the distance calculation.
+
+13. Training Data
+
+Training data is the portion of the dataset used by the algorithm to make predictions. In this practical, 80% of the data is used for training. KNN stores these training samples and uses them when predicting test samples.
+
+14. Testing Data
+
+Testing data is unseen data used to evaluate the performance of the trained model. In this practical, 20% of the dataset is used for testing. Predictions on this data are compared with the actual outcomes.
+
+15. Train-Test Split
+
+Train-test split divides the dataset into training and testing portions. This practical uses an 80:20 ratio using train_test_split(). This helps evaluate how well the model performs on unseen data.
+
+16. Confusion Matrix
+
+A confusion matrix is a table used to evaluate classification results. It contains True Positive (TP), True Negative (TN), False Positive (FP), and False Negative (FN). It shows which predictions were correct and which were incorrect.
+
+17. True Positive (TP)
+
+True Positive occurs when the actual class is positive and the model also predicts positive. In this practical, it means the patient is actually diabetic and the model correctly predicts diabetic.
+
+18. True Negative (TN)
+
+True Negative occurs when the actual class is negative and the model predicts negative. Here, it means the patient is actually non-diabetic and the model correctly predicts non-diabetic.
+
+19. False Positive (FP)
+
+False Positive occurs when the actual class is negative but the model predicts positive. In this practical, a non-diabetic patient is incorrectly classified as diabetic.
+
+20. False Negative (FN)
+
+False Negative occurs when the actual class is positive but the model predicts negative. Here, a diabetic patient is incorrectly classified as non-diabetic. Reducing false negatives is important in medical classification.
+
+21. Accuracy
+
+Accuracy measures the percentage of total predictions that are correct. It is calculated as:
+
+Accuracy = (TP + TN) / (TP + TN + FP + FN)
+
+Your practical obtained an accuracy of 0.6883 or 68.83%.
+
+22. Error Rate
+
+Error rate represents the percentage or proportion of incorrect predictions. It is calculated as:
+
+Error Rate = 1 − Accuracy
+
+Your practical obtained an error rate of 0.3117 or 31.17%.
+
+23. Precision
+
+Precision measures how many predicted positive cases are actually positive. It is calculated as:
+
+Precision = TP / (TP + FP)
+
+Your practical obtained a precision of 0.5745.
+
+24. Recall
+
+Recall measures how many actual positive cases were correctly identified by the model. It is calculated as:
+
+Recall = TP / (TP + FN)
+
+Your practical obtained a recall of 0.4909.
+
+25. F1-Score
+
+F1-score is the harmonic mean of precision and recall. It provides a balance between precision and recall, especially when both are important. Your practical obtained an F1-score of 0.5294.
+
+26. Lazy Learning
+
+KNN is called a lazy learning algorithm because it does not build a specific model during the training phase. It stores the training data and performs distance calculations when a new prediction is required.
+
+27. Why KNN Needs Scaling
+
+KNN is a distance-based algorithm, so feature magnitudes directly affect the result. For example, Insulin can have much larger values than BMI. Scaling ensures that each feature contributes more fairly to the distance calculation.
+
+28. Choosing the Value of K
+
+The value of K affects the performance of KNN. Different K values can be tested and their error rates compared. Your practical tests K values from 1 to 20 and plots error rate against K.
+
+29. Small K vs Large K
+
+A small K makes the model sensitive to individual points and noise, which can cause overfitting. A large K considers more points and gives smoother predictions, but may ignore important local patterns and cause underfitting.
+
+30. random_state
+
+random_state controls the random splitting of the dataset. Using the same value, such as 42, produces the same train-test split each time. This makes the experiment reproducible.
+
+31. n_neighbors
+
+n_neighbors is the parameter of KNeighborsClassifier that specifies the number of neighbors used for prediction. In your practical:
+
+KNeighborsClassifier(n_neighbors=5)
+
+This means K = 5.
+
+32. Advantages of KNN
+
+KNN is simple and easy to understand and implement. It does not require a complicated training process and can work well when similar data points belong to similar classes. It can be used for both classification and regression.
+
+33. Disadvantages of KNN
+
+KNN can be computationally expensive for large datasets because it calculates distances during prediction. It is sensitive to feature scaling and the choice of K. It can also be affected by irrelevant features and noisy data.
+
+34. Why KNN Is Suitable for This Practical
+
+KNN can classify patients based on the similarity of their medical measurements. By comparing a new patient with nearby patients in the dataset, it can predict whether the patient belongs to the diabetic or non-diabetic class.
+
+End of ML5 KNN Theory Notes
+
+Prepared for Machine Learning Practical and Viva Examination.

@@ -1,0 +1,46 @@
+Classify the email using the binary classification method. Email Spam detection has two 
+states: a) Normal State – Not Spam, b) Abnormal State – Spam. Use K-Nearest Neighbors and 
+Support Vector Machine for classification. Analyze their performance. 
+Dataset link: The emails.csv dataset on the Kaggle 
+https://www.kaggle.com/datasets/balaka18/email-spam-classification-dataset-csv
+
+
+
+## Practical: Bank Customer Churn Prediction Using a Neural Network
+
+### Aim
+
+To build a neural-network-based classifier that predicts whether a bank customer will leave the bank within the next six months.
+
+### Theory
+
+Customer churn refers to customers discontinuing their relationship with a bank. Predicting churn helps banks identify customers who may leave and take steps to retain them.
+
+The dataset contains 10,000 customer records with features such as credit score, geography, gender, age, tenure, balance, and number of products. The target variable is `Exited`, where `1` indicates that the customer left and `0` indicates that the customer stayed.
+
+A neural network learns patterns from the customer features to classify each customer. The dataset is divided into training and testing sets. Numeric features are normalized, while categorical features are converted into numeric form using one-hot encoding. The model is trained using a feed-forward neural network and evaluated on unseen test data.
+
+### Methods and Terms Used
+
+- Feature set (`X`): Customer details used to make predictions.
+- Target set (`y`): The `Exited` column.
+- Train-test split: Dividing data into training and testing subsets.
+- Normalization: Scaling numeric features using `StandardScaler`.
+- One-hot encoding: Converting categorical values into numeric columns.
+- Neural network: A feed-forward model implemented using `MLPClassifier`.
+- ReLU activation: Adds non-linearity to the network.
+- Adam optimizer: Updates model weights during training.
+- Early stopping: Stops training when validation performance stops improving.
+- Accuracy: Proportion of correct predictions.
+- Confusion matrix: Shows correct and incorrect predictions for each class.
+
+### Points of Improvement
+
+- Experiment with different numbers of hidden layers and neurons.
+- Tune the learning rate and regularization parameter.
+- Use early stopping to help reduce overfitting.
+- Evaluate precision, recall, and F1-score along with accuracy, since churn data may be imbalanced.
+
+### Conclusion
+
+A neural-network classifier can be used to predict whether a bank customer is likely to leave. The model is trained on customer data and evaluated using accuracy and a confusion matrix. Its performance can be improved through preprocessing, parameter tuning, and additional evaluation metrics.

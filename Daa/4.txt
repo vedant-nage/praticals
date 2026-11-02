@@ -1,0 +1,181 @@
+3. Practical Write-up
+Aim
+To implement the 0/1 Knapsack Problem using dynamic programming in Python.
+Theory
+The 0/1 Knapsack Problem is an optimization problem in which we select items to maximize the total value without exceeding the knapsack's capacity.
+
+Each item has a weight and a value. An item can either be selected completely (1) or not selected (0).
+
+Dynamic programming solves the problem by breaking it into smaller subproblems and storing their results in a table to avoid repeated calculations.
+Algorithm
+1. Start.
+2. Accept the number of items, their weights, values, and knapsack capacity.
+3. Create a DP table initialized with zeros.
+4. For each item and each possible capacity:
+   - If the item fits, choose the maximum of including or excluding it.
+   - Otherwise, exclude the item.
+5. Return the value stored in the last cell of the DP table.
+6. Display the maximum value.
+7. Stop.
+Time and Space Complexity
+Complexity	Value
+Time	O(n × W)
+Auxiliary space	O(n × W)
+
+Here, n is the number of items and W is the knapsack capacity.
+Result
+The 0/1 Knapsack Problem was successfully solved using dynamic programming to determine the maximum value that can be obtained without exceeding the given capacity.
+
+
+
+
+/////
+# 0/1 Knapsack: Explanation and Viva Questions
+
+## 1. Explanation of the program
+
+The 0/1 Knapsack Problem is an optimization problem in which we select items to maximize the total value without exceeding the capacity of a knapsack.
+
+Each item has two properties:
+
+- Weight: the amount of space it occupies.
+- Value: the benefit obtained by selecting it.
+
+In the 0/1 Knapsack Problem, each item can either be selected completely (1) or not selected (0). Fractions of items are not allowed.
+
+The program uses dynamic programming to solve the problem by storing the results of smaller subproblems in a table.
+
+### Example
+
+Suppose we have three items:
+
+| Item | Weight | Value |
+| ---- | ------ | ----- |
+| 1    | 10     | 60    |
+| 2    | 20     | 100   |
+| 3    | 30     | 120   |
+
+Knapsack capacity = 50
+
+The best selection is Item 2 and Item 3.
+
+Total weight = 20 + 30 = 50
+
+Total value = 100 + 120 = 220
+
+Therefore, the maximum value is 220.
+
+## 2. Explanation of important Python statements
+
+| Statement                                           | Explanation                                           |
+| --------------------------------------------------- | ----------------------------------------------------- |
+| `dp = [[0] * (capacity + 1) for _ in range(n + 1)]` | Creates a DP table to store maximum values.           |
+| `for i in range(1, n + 1)`                          | Iterates through the items.                           |
+| `for w in range(capacity + 1)`                      | Iterates through possible knapsack capacities.        |
+| `weights[i - 1] <= w`                               | Checks whether the current item fits.                 |
+| `values[i - 1] + dp[i - 1][w - weights[i - 1]]`     | Calculates the value if the current item is included. |
+| `dp[i - 1][w]`                                      | Calculates the value if the current item is excluded. |
+| `max(...)`                                          | Selects the better of the two choices.                |
+
+## 3. Viva Questions and Answers
+
+### Basic questions
+
+1\. What is the 0/1 Knapsack Problem?
+
+It is an optimization problem in which items are selected to maximize total value without exceeding the knapsack's capacity. Each item can either be selected completely or not selected at all.
+
+2\. What is dynamic programming?
+
+Dynamic programming is a technique that solves a problem by dividing it into smaller subproblems and storing their results to avoid repeated calculations.
+
+3\. Why is it called the 0/1 Knapsack Problem?
+
+Because each item has only two possible choices: 1 means selected, and 0 means not selected.
+
+4\. What is the difference between Fractional Knapsack and 0/1 Knapsack?
+
+In Fractional Knapsack, fractions of items are allowed. In 0/1 Knapsack, an item must be selected completely or not selected at all.
+
+5\. Why is dynamic programming used for the 0/1 Knapsack Problem?
+
+Because it efficiently solves overlapping subproblems and guarantees the optimal solution.
+
+### Algorithm-related questions
+
+6\. What is a DP table?
+
+A DP table stores the maximum value achievable for different combinations of items and knapsack capacities.
+
+7\. What does `dp[i][w]` represent?
+
+It represents the maximum value that can be obtained using the first `i` items with a knapsack capacity of `w`.
+
+8\. What are the two choices for each item?
+
+- Include the item.
+- Exclude the item.
+
+9\. What is the recurrence relation?
+
+If the current item fits:
+
+\\[ dp[i][w]=\max \begin{cases} v_i+dp[i-1][w-w_i]\\\ dp[i-1][w] \end{cases} \\]
+
+Otherwise:
+
+\\[ dp[i][w]=dp[i-1][w] \\]
+
+10\. What is the base case?
+
+If there are no items or the capacity is zero, the maximum value is zero.
+
+\\[ dp[0][w]=0,\quad dp[i][0]=0 \\]
+
+### Complexity-related questions
+
+11\. What is the time complexity?
+
+O(n × W), where `n` is the number of items and `W` is the knapsack capacity.
+
+12\. What is the space complexity?
+
+O(n × W), because the program stores a two-dimensional DP table.
+
+13\. Can the space complexity be optimized?
+
+Yes. We can use a one-dimensional DP array and update it in reverse capacity order, reducing the auxiliary space to O(W).
+
+### Practical-based questions
+
+14\. What happens if the capacity is zero?
+
+The maximum value is zero because no item can be selected.
+
+15\. What happens if an item's weight is greater than the capacity?
+
+That item cannot be selected, so its value is not included.
+
+16\. Does the greedy method always give the optimal solution for 0/1 Knapsack?
+
+No. Selecting the item with the highest value-to-weight ratio does not always produce the optimal solution.
+
+17\. What is the main advantage of dynamic programming?
+
+It avoids repeated calculations and guarantees an optimal solution.
+
+18\. What is the main limitation of dynamic programming for this problem?
+
+Its time and space requirements depend on the capacity `W`, which can be very large.
+
+## 4. Important questions to prepare
+
+Focus on these five questions for your practical exam:
+
+1. What is the 0/1 Knapsack Problem?
+2. What does `dp[i][w]` represent?
+3. Explain the recurrence relation.
+4. Why is dynamic programming preferred over a greedy method?
+5. Explain the time and space complexity.
+
+Remember: The key idea is to compare two choices for every item: include it or exclude it. The DP table stores the better choice for each possible capacity.

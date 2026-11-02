@@ -1,0 +1,37 @@
+1. How to Implement the Practical
+1. Open the official MetaMask website: metamask.io.
+2. Download the MetaMask extension for your browser or the mobile app.
+3. Open MetaMask and select Create a new wallet.
+4. Create a strong password and continue.
+5. MetaMask will show a Secret Recovery Phrase. Write it down and store it securely offline.
+6. Confirm the recovery phrase as prompted.
+7. Your wallet is created. Open the account menu to view and copy your public wallet address.
+8. To receive crypto, share your public address with the sender. To send crypto, select Send, enter the recipient’s address and amount, review the network and transaction fee, then confirm.
+Security: Never share your Secret Recovery Phrase or private keys. Anyone who has them can control your wallet. Use only the official MetaMask site or app.
+
+
+
+///writeup
+
+2. Practical Write-up
+Aim
+To create a cryptocurrency wallet using MetaMask and 
+understand how it can be used for crypto transactions.
+Theory
+MetaMask is a cryptocurrency wallet that allows
+ users to manage blockchain accounts and interact 
+ with decentralized applications. It provides a 
+ public wallet address for receiving cryptocurrency 
+ and uses private keys to authorize transactions.
+
+A wallet’s public address can be shared to receive 
+funds. Its private key and Secret Recovery Phrase 
+must remain confidential because they provide control 
+over the wallet. Transactions are recorded on the
+ blockchain and may require a network transaction fee,
+  commonly called a gas fee.
+Conclusion
+A MetaMask wallet was created successfully.
+ The wallet’s public address can be used to 
+ receive cryptocurrency, and the wallet can 
+ send crypto by confirming the recipient address, amount, network, and transaction fee.

@@ -1,0 +1,80 @@
+Implement Gradient Descent Algorithm to find the local minima of a function. 
+For example, find the local minima of the function y=(x+3)² starting from the point x=2. 
+
+# Machine Learning Practical: Gradient Descent Algorithm
+
+## Aim
+
+To implement the Gradient Descent Algorithm to find the local minimum of the function \\(y=(x+3)^2\\), starting from \\(x=2\\).
+
+## Theory
+
+Gradient Descent is an optimization algorithm used to find the minimum of a function by repeatedly updating the input value in the direction opposite to the gradient.
+
+The update rule is:
+
+\\[ x\_{\text{new}}=x\_{\text{old}}-\alpha f'(x) \\]
+
+Where:
+
+- \\(x\\) = current value
+- \\(\alpha\\) = learning rate
+- \\(f'(x)\\) = derivative of the function
+
+For the given function:
+
+\\[ f(x)=(x+3)^2 \\]
+
+The derivative is:
+
+\\[ f'(x)=2(x+3) \\]
+
+The minimum occurs when the derivative is zero.
+
+\\[ 2(x+3)=0 \Rightarrow x=-3 \\]
+
+At this point, the minimum function value is \\(f(-3)=0\\).
+
+## Python Program
+
+```
+# Gradient Descent Algorithmdef function(x):    return (x + 3) ** 2def derivative(x):    return 2 * (x + 3)# Initial parametersx = 2learning_rate = 0.1iterations = 100print("Initial x:", x)# Gradient Descentfor i in range(iterations):    grad = derivative(x)    x = x - learning_rate * grad    print("Iteration", i + 1,          "x =", round(x, 6),          "y =", round(function(x), 6))print("\nLocal Minimum:")print("x =", round(x, 6))print("y =", round(function(x), 6))
+```
+
+## Calculation
+
+Using the learning rate \\(\alpha=0.1\\):
+
+Initially, \\(x=2\\).
+
+First iteration:
+
+\\[ x_1=2-0.1[2(2+3)] \\]
+
+\\[ x_1=2-1=1 \\]
+
+Second iteration:
+
+\\[ x_2=1-0.1[2(1+3)] \\]
+
+\\[ x_2=1-0.8=0.2 \\]
+
+Third iteration:
+
+\\[ x_3=0.2-0.1[2(0.2+3)] \\]
+
+\\[ x_3=-0.44 \\]
+
+The algorithm continues updating \\(x\\) until it approaches \\(-3\\).
+
+## Result
+
+The Gradient Descent Algorithm was implemented successfully.
+
+Starting from \\(x=2\\), the algorithm converges towards the minimum of the function.
+
+Local minimum: \\(x=-3\\)
+
+Minimum function value: \\(y=0\\)
+
+The algorithm finds the minimum by repeatedly moving in the direction opposite to the gradient.

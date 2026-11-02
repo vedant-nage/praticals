@@ -1,0 +1,65 @@
+2. Practical Write-up
+Aim
+To write and deploy a Solidity smart contract that stores student data using structures and arrays, implements a fallback function, and observes transaction gas usage and fees.
+Theory
+- Structure (struct): Groups related data fields into one custom data type. Here, Student stores a roll number, name, and marks.
+- Array: students is a dynamic array of Student records. New records are added using push().
+- Fallback function: fallback() is called when a contract receives a call that does not match any function, or when it receives plain ETH without a matching receive() function. This fallback is payable, so it can accept ETH. It also increments fallbackCalls.
+- Gas: Gas measures the computational work performed by a transaction. A transaction fee is calculated using the gas used and the network’s gas price.
+Conclusion
+The contract stores and retrieves student records using a structure and dynamic array. Its fallback function handles unmatched calls and counts them. After deployment and function calls, gas usage and transaction fees can be observed from the transaction details.
+3. How to Explain and Demonstrate It
+Deploy on an Ethereum test network
+1. Open Remix IDE and create StudentRecords.sol.
+2. Paste the code and compile it with Solidity 0.8.20 or a compatible version.
+3. Connect MetaMask to Sepolia and select Injected Provider – MetaMask in Remix.
+4. Deploy StudentRecords and confirm the deployment transaction in MetaMask.
+5. Expand the deployed contract.
+Demonstrate the operations
+1. Call addStudent with 1, "Asha", and 85.
+2. Call addStudent again with 2, "Rahul", and 90.
+3. Call getStudentCount; it should return 2.
+4. Call getStudent with index 0; it should return roll number 1, name "Asha", and marks 85.
+5. To test the fallback, use Remix’s low-level interaction field to send a transaction to the contract with unmatched calldata. Because the fallback is payable, you can also attach a small amount of test ETH. The fallbackCalls value should increase.
+Observe gas and transaction fees
+For each state-changing transaction—deployment, addStudent, or fallback—open the transaction details in Remix or MetaMask. Record:
+- Gas used: The amount of gas consumed by the transaction.
+- Gas price: The price paid per unit of gas.
+- Transaction fee: Gas used multiplied by the effective gas price.
+You can also open the confirmed Sepolia transaction in a block explorer such as Sepolia Etherscan to view its gas and fee details.
+
+Do not write a made-up gas value in your practical. Gas depends on the transaction and network conditions. Record the values shown for your own deployment and transactions.
+
+
+
+//////
+. Code for the Question
+Your StudentRecords contract uses a structure, an array, and a fallback function to store and access student data.
+2. Practical Write-up
+Aim
+To write and deploy a Solidity smart contract that stores student records using structures and arrays, implements a fallback function, and observes gas usage and transaction fees.
+Theory
+A smart contract is a program deployed on a blockchain. It executes when a user calls one of its functions.
+- Structure: Student groups a student’s roll number, name, and marks into one data type.
+- Array: students is a dynamic array that stores multiple student records. push() adds a new record.
+- Fallback function: fallback() runs when a call does not match a defined function. In this contract, it increments fallbackCalls.
+- Gas: Gas measures the computational work of a transaction. The transaction fee depends on the gas used and the gas price.
+Conclusion
+The contract stores and retrieves student records using a structure and dynamic array. The fallback function handles unmatched calls and counts them. Gas usage and transaction fees can be observed from transaction details.
+3. How to Explain It in the Practical
+You can say:
+“This is a Solidity smart contract named StudentRecords. It stores student information on the blockchain. I created a structure named Student with three fields: roll number, name, and marks. I used a dynamic array named students to store multiple student records.
+
+The addStudent() function adds a new record to the array. The getStudent() function retrieves a record using its array index, and getStudentCount() returns the total number of records.
+
+The fallback function is called when the contract receives a call that does not match any defined function. In this program, it increments the fallbackCalls counter.
+
+I deployed the contract in Remix VM and tested it by adding students, retrieving their details, and calling the fallback function. I also observed the gas used by the transactions.”
+
+Demonstrate while explaining
+1. Deploy the contract in Remix.
+2. Call addStudent(1, "Asha", 85) and addStudent(2, "Rahul", 90).
+3. Call getStudentCount()—show that it returns 2.
+4. Call getStudent(0)—show Asha’s details.
+5. Call the fallback with unmatched calldata and then show that fallbackCalls increased.
+Gas clarification: If you used Remix VM, say you observed simulated gas usage. Claim an actual Ethereum transaction fee only if you deployed on a test network and checked the confirmed transaction details.

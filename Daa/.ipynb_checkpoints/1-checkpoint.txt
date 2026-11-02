@@ -1,0 +1,177 @@
+# Practical: Fibonacci Series Using Recursive and Non-Recursive Methods
+
+## 1. Aim
+
+To write a Python program to generate the Fibonacci series using recursive and non-recursive methods and analyze their time and space complexity.
+
+## 2. Theory
+
+The Fibonacci series is a sequence of numbers in which each number is the sum of the two preceding numbers.
+
+The series starts with 0 and 1.
+
+Fibonacci series: 0, 1, 1, 2, 3, 5, 8, 13, ...
+
+There are two methods to calculate Fibonacci numbers:
+
+- Recursive method: A function calls itself to calculate the Fibonacci number.
+- Non-recursive method: A loop calculates the Fibonacci numbers using variables.
+
+## 3. Algorithm
+
+### Non-recursive method
+
+1. Start.
+2. Accept the number of terms `n`.
+3. Initialize `a = 0` and `b = 1`.
+4. Repeat `n` times:
+   - Print `a`.
+   - Update `a` and `b` as `a = b` and `b = a + b`.
+5. Stop.
+
+### Recursive method
+
+1. Start.
+2. Accept the number of terms `n`.
+3. Define a function `fibonacci(n)`.
+4. If `n <= 1`, return `n`.
+5. Otherwise, return `fibonacci(n-1) + fibonacci(n-2)`.
+6. Call the function for each term and print the result.
+7. Stop.
+
+## 4. Program
+
+```
+def fibonacci_iterative(n):    a, b = 0, 1    for i in range(n):        print(a, end=" ")        a, b = b, a + bdef fibonacci_recursive(n):    if n <= 1:        return n    return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)n = int(input("Enter the number of terms: "))print("Fibonacci using Iterative Method:")fibonacci_iterative(n)print("\nFibonacci using Recursive Method:")for i in range(n):    print(fibonacci_recursive(i), end=" ")
+```
+
+## 5. Sample Output
+
+```
+Enter the number of terms: 7
+
+Fibonacci using Iterative Method:
+0 1 1 2 3 5 8
+
+Fibonacci using Recursive Method:
+0 1 1 2 3 5 8
+```
+
+## 6. Time and Space Complexity
+
+| Method    | Time Complexity | Auxiliary Space |
+| --------- | --------------- | --------------- |
+| Iterative | O(n)            | O(1)            |
+| Recursive | O(2ⁿ)           | O(n)            |
+
+## 7. Result
+
+The Fibonacci series was successfully generated using both recursive and non-recursive methods in Python. The iterative method is more efficient in terms of time and space complexity.
+
+
+
+
+///expalination
+## Viva Questions and Answers: Fibonacci Series
+
+These are the most likely questions an examiner may ask during your practical exam.
+
+### Basic questions
+
+1\. What is the Fibonacci series?
+
+The Fibonacci series is a sequence in which each number is the sum of the two preceding numbers. It starts with 0 and 1.
+
+Example: 0, 1, 1, 2, 3, 5, 8, 13.
+
+2\. What is recursion?
+
+Recursion is a programming technique in which a function calls itself to solve a problem.
+
+3\. What is iteration?
+
+Iteration is a programming technique in which a loop repeatedly executes a block of code until a condition is satisfied.
+
+4\. What are the base cases in the recursive Fibonacci program?
+
+The base cases are:
+
+```
+if n <= 1:    return n
+```
+
+They return 0 for `n = 0` and 1 for `n = 1`. They prevent infinite recursion.
+
+5\. What is the difference between recursion and iteration?
+
+Recursion uses function calls to repeat a computation, while iteration uses loops such as `for` and `while`.
+
+### Program-related questions
+
+6\. Why do we initialize `a = 0` and `b = 1`?
+
+Because the first two numbers of the Fibonacci series are 0 and 1.
+
+7\. What does `a, b = b, a + b` do?
+
+It updates both variables simultaneously. `a` becomes the previous value of `b`, and `b` becomes the sum of the previous values of `a` and `b`.
+
+8\. Why do we use `range(n)` in the iterative program?
+
+It executes the loop exactly `n` times, generating `n` Fibonacci terms.
+
+9\. What is the purpose of the return statement?
+
+The `return` statement sends the calculated value back to the function caller.
+
+10\. What happens if the base case is removed?
+
+The recursive function will continue calling itself until Python raises a `RecursionError` or the program exceeds its recursion limit.
+
+### Complexity-related questions
+
+11\. What is the time complexity of the iterative Fibonacci program?
+
+O(n), because the loop executes `n` times.
+
+12\. What is the space complexity of the iterative Fibonacci program?
+
+O(1), because it uses a fixed number of variables regardless of the input size.
+
+13\. What is the time complexity of the recursive Fibonacci program?
+
+O(2ⁿ), because the simple recursive method repeatedly calculates the same Fibonacci values.
+
+14\. What is the space complexity of the recursive Fibonacci program?
+
+O(n), because the maximum depth of the recursive call stack is proportional to `n`.
+
+15\. Which method is more efficient and why?
+
+The iterative method is more efficient because it requires O(n) time and O(1) auxiliary space, while the simple recursive method requires O(2ⁿ) time and O(n) auxiliary space.
+
+### Output-based questions
+
+16\. What is the output for `n = 5`?
+
+```
+0 1 1 2 3
+```
+
+17\. What is the sixth Fibonacci number?
+
+If we start counting from position 0, the sixth Fibonacci number is 8.
+
+18\. What happens if the input is 0?
+
+The iterative method prints no terms, and the recursive function returns 0.
+
+19\. Can Fibonacci numbers be calculated without recursion or loops?
+
+Yes, using a mathematical formula called Binet's formula, although it can introduce precision errors for large numbers.
+
+20\. How can we improve the recursive Fibonacci program?
+
+We can use memoization or dynamic programming to store previously calculated Fibonacci numbers and avoid repeated calculations. This reduces the time complexity to O(n).
+
+Exam tip: Be ready to explain the base case, the recursive call, the variable update in the iterative method, and why the iterative method is more efficient. These are the core concepts behind the practical.

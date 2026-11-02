@@ -1,0 +1,59 @@
+Classify the email using the binary classification method. Email Spam detection has two 
+states: a) Normal State – Not Spam, b) Abnormal State – Spam. Use K-Nearest Neighbors and 
+Support Vector Machine for classification. Analyze their performance. 
+Dataset link: The emails.csv dataset on the Kaggle 
+https://www.kaggle.com/datasets/balaka18/email-spam-classification-dataset-csv
+
+
+
+
+
+
+# Machine Learning Practical: Email Spam Detection Using KNN and SVM
+
+## Aim
+
+To classify emails into two categories, Spam and Not Spam, using K-Nearest Neighbors (KNN) and Support Vector Machine (SVM), and compare their performance using classification evaluation metrics.
+
+## Objectives
+
+1. Pre-process the email dataset.
+2. Convert email text into numerical features.
+3. Implement KNN and SVM classification algorithms.
+4. Evaluate both models using a confusion matrix, accuracy, precision, recall, and F1-score.
+5. Compare the performance of both classifiers.
+
+## Dataset
+
+The `emails.csv` dataset contains email messages and their corresponding labels.
+
+- Normal State: Not Spam (0)
+- Abnormal State: Spam (1)
+
+Dataset: [Emails Dataset on Kaggle]
+
+## Theory
+
+K-Nearest Neighbors (KNN): A supervised learning algorithm that classifies an email based on the majority class of its K nearest training examples.
+
+Support Vector Machine (SVM): A supervised learning algorithm that finds an optimal decision boundary to separate spam and non-spam emails.
+
+
+
+## Evaluation Metrics
+
+| Metric           | Description                                                 |
+| ---------------- | ----------------------------------------------------------- |
+| Accuracy         | Proportion of correctly classified emails.                  |
+| Precision        | Proportion of predicted spam emails that are actually spam. |
+| Recall           | Proportion of actual spam emails correctly identified.      |
+| F1-score         | Harmonic mean of precision and recall.                      |
+| Confusion Matrix | Shows correct and incorrect classification counts.          |
+
+## Result
+
+The email spam detection system was implemented using KNN and SVM classifiers.
+
+The dataset was preprocessed and converted into numerical features using TF-IDF. Both models were trained and evaluated using accuracy, precision, recall, F1-score, and confusion matrices.
+
+The model with the higher F1-score and better recall for the Spam class is considered more effective at identifying spam emails while minimizing misclassification.

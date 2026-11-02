@@ -1,0 +1,99 @@
+Got it — you want **brief but enough for viva**, not just one-line points.
+
+## Job Sequencing with Deadlines — Theory
+
+### 1. Definition
+Job Sequencing with Deadlines is a **Greedy Algorithm** problem in which each job has a **deadline** and a **profit**. Every job requires exactly **one unit of time**. The objective is to select and arrange jobs so that the **total profit is maximum**.
+
+### 2. Basic Conditions
+- Each job takes one unit of time.
+- A job earns its profit only when completed **on or before its deadline**.
+- Only one job can be executed at a time.
+- A job cannot be divided.
+- The goal is to maximize total profit.
+
+### 3. Greedy Approach
+First, all jobs are sorted according to their **profit in decreasing order**. We consider the job with the highest profit first because our objective is to maximize profit.
+
+After selecting a job, we place it in the **latest available time slot before its deadline**.
+
+### 4. Why Latest Slot?
+Suppose a job has deadline 3. We first try slot 3, then slot 2, and finally slot 1.
+
+Placing it as late as possible keeps the earlier slots available for jobs having smaller deadlines.
+
+### 5. Example
+
+| Job | Deadline | Profit |
+|---|---:|---:|
+| J1 | 2 | 100 |
+| J2 | 1 | 50 |
+| J3 | 2 | 20 |
+| J4 | 1 | 70 |
+| J5 | 3 | 60 |
+
+After sorting by profit:
+
+```text
+J1 → J4 → J5 → J2 → J3
+```
+
+Available slots:
+
+```text
+1    2    3
+_    _    _
+```
+
+Schedule:
+
+```text
+J4   J1   J5
+```
+
+Total profit:
+
+\[
+70 + 100 + 60 = 230
+\]
+
+Therefore, the **maximum profit is 230**.
+
+### 6. Algorithm Steps
+
+1. Store each job with its ID, deadline and profit.
+2. Sort jobs in decreasing order of profit.
+3. Find the maximum deadline.
+4. Create empty time slots.
+5. Take each job one by one.
+6. Search from its deadline towards slot 1.
+7. Place the job in the first available slot.
+8. If no slot is available, skip the job.
+9. Add the profit of all scheduled jobs.
+
+### 7. Complexity
+
+For the implementation we used:
+
+- **Time Complexity:** `O(n²)`
+- **Space Complexity:** `O(n)`
+
+### 8. Important Viva Points
+
+**Why is it greedy?**  
+Because we make the locally best choice by considering the highest-profit job first.
+
+**Why sort by profit?**  
+To give priority to jobs that provide higher profit.
+
+**Why schedule from deadline backwards?**  
+To place the job as late as possible and preserve earlier slots.
+
+**What if the deadline is 3?**  
+The job can be placed in slot 1, 2, or 3.
+
+**Can two jobs occupy the same slot?**  
+No, only one job can be executed in one time slot.
+
+**Maximum number of jobs?**  
+If the maximum deadline is `D`, at most `D` jobs can be scheduled.

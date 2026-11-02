@@ -1,0 +1,207 @@
+2. Practical Write-up
+Aim
+To design an N-Queens matrix and place N queens on an N × N chessboard using backtracking such that no two queens attack each other.
+Theory
+The N-Queens problem is a constraint satisfaction problem in which N queens must be placed on an N × N chessboard.
+
+The conditions are:
+- No two queens can be in the same row.
+- No two queens can be in the same column.
+- No two queens can be on the same diagonal.
+Backtracking is an algorithmic technique that builds a solution step by step. If a placement violates any condition, the algorithm removes that queen and tries another position.
+Algorithm
+1. Start.
+2. Create an N × N matrix initialized with zeros.
+3. Place the first queen in the first row.
+4. Check whether a position is safe for the next queen.
+5. If safe, place the queen and move to the next row.
+6. If no safe position exists, remove the previously placed queen and try another position.
+7. Repeat until all N queens are placed.
+8. Display the final matrix.
+9. Stop.
+Sample Output
+For N = 4, one valid solution is:
+0 1 0 0
+0 0 0 1
+1 0 0 0
+0 0 1 0
+
+
+Here, 1 represents a queen and 0 represents an empty square.
+
+Important: The sample solution places the first queen at row 1, column 2 (using 1-based indexing). If the first queen is fixed at the top-left corner, the 4-Queens problem has no solution. The program above fixes it there, so it will report no solution for N = 4.
+Time and Space Complexity
+Complexity	Value
+Time	O(N!)
+Auxiliary space	O(N²)
+
+The time complexity is O(N!) in the worst case because the algorithm explores different column placements across rows. The space complexity is O(N²) because the chessboard is stored as an N × N matrix.
+Result
+The N-Queens problem was implemented using backtracking to place queens on a chessboard such that no two queens attack each other.
+
+
+
+
+/////
+# N-Queens Using Backtracking: Explanation and Viva Questions
+
+## 1. Explanation of the program
+
+The N-Queens problem is a constraint satisfaction problem in which we have to place N queens on an N × N chessboard such that no two queens attack each other.
+
+A queen can attack another queen horizontally, vertically, or diagonally.
+
+The program uses backtracking, which means it places a queen, checks whether the placement is safe, and moves forward. If a placement leads to a dead end, it removes the queen and tries another position.
+
+### Example: N = 4
+
+One valid solution is:
+
+```
+0 1 0 0
+0 0 0 1
+1 0 0 0
+0 0 1 0
+```
+
+Here, `1` represents a queen and `0` represents an empty square.
+
+### How the program works
+
+Step 1: Initialize the board
+
+Create an N × N matrix filled with zeros.
+
+Step 2: Place the first queen
+
+Place the first queen at the top-left corner, as specified in the program.
+
+Step 3: Check for a safe position
+
+The `is_safe()` function checks three conditions:
+
+- Same column: No queen should already exist in that column.
+- Upper-left diagonal: No queen should exist on the upper-left diagonal.
+- Upper-right diagonal: No queen should exist on the upper-right diagonal.
+
+Since the program places queens row by row, it only needs to check the rows above the current row.
+
+Step 4: Place the next queen
+
+If a position is safe, place the queen and recursively call the function for the next row.
+
+Step 5: Backtrack
+
+If no valid position is found in a row, remove the previously placed queen and try another column.
+
+Step 6: Display the solution
+
+When all N queens are successfully placed, the program displays the final matrix.
+
+### Important correction for your practical
+
+The program fixes the first queen at position `(0, 0)`.
+
+For N = 4, this makes the problem unsolvable. The 4-Queens problem has valid solutions, but none with the first queen fixed at the top-left corner.
+
+For N = 4, use the following initial placement to obtain a valid solution:
+
+```
+board[0][1] = 1
+```
+
+This places the first queen in the second column of the first row.
+
+## 2. Viva Questions and Answers
+
+### Basic questions
+
+1\. What is the N-Queens problem?
+
+The N-Queens problem is the problem of placing N queens on an N × N chessboard so that no two queens attack each other.
+
+2\. What is backtracking?
+
+Backtracking is an algorithmic technique that builds a solution step by step and abandons a path when it cannot lead to a valid solution.
+
+3\. Why is the N-Queens problem solved using backtracking?
+
+Because each queen's placement affects the positions available for the remaining queens. Backtracking allows us to explore possible placements and undo invalid choices.
+
+4\. What are the constraints of the N-Queens problem?
+
+No two queens can be in the same row, column, or diagonal.
+
+5\. What does `1` and `0` represent in the matrix?
+
+`1` represents a queen, and `0` represents an empty square.
+
+### Program-related questions
+
+6\. Why do we place queens row by row?
+
+Placing one queen per row automatically satisfies the row constraint, reducing the number of checks required.
+
+7\. What is the purpose of the `is_safe()` function?
+
+It checks whether a queen can be placed at a particular position without attacking any previously placed queen.
+
+8\. Why do we check only the upper diagonals?
+
+Because queens are placed row by row from top to bottom. All previously placed queens are in rows above the current row.
+
+9\. What is the base case of the recursive function?
+
+When `row == n`, all N queens have been placed successfully, so the function returns `True`.
+
+10\. What is the purpose of backtracking in the program?
+
+If a queen's placement prevents the remaining queens from being placed, the program removes that queen and tries another position.
+
+### Complexity-related questions
+
+11\. What is the time complexity of the N-Queens problem?
+
+The commonly stated worst-case time complexity is O(N!), because the algorithm explores different column placements across rows.
+
+12\. What is the space complexity?
+
+The board requires O(N²) space. The recursion stack requires O(N) additional space.
+
+13\. Can the N-Queens problem be solved without backtracking?
+
+Yes. Other approaches include constraint programming, branch and bound, and specialized search algorithms.
+
+### Practical-based questions
+
+14\. What happens if N = 1?
+
+The problem has one solution: a single queen on a 1 × 1 board.
+
+15\. What happens if N = 2 or N = 3?
+
+No solution exists for N = 2 or N = 3.
+
+16\. What happens if the first queen is fixed at the top-left corner for N = 4?
+
+No solution exists because every possible placement of the remaining queens eventually leads to a conflict.
+
+17\. How many solutions exist for N = 4?
+
+There are two distinct solutions when rotations and reflections are counted separately.
+
+18\. What is the main advantage of backtracking?
+
+It avoids exploring paths that cannot lead to a valid solution, making it more efficient than checking every possible arrangement.
+
+## 3. Important questions to prepare
+
+Focus on these five questions for your practical exam:
+
+1. What is the N-Queens problem?
+2. What is backtracking?
+3. How does the `is_safe()` function work?
+4. Why do we check only the upper diagonals?
+5. What is the time and space complexity?
+
+Remember: The core idea is to place one queen per row, check whether the position is safe, and backtrack whenever a placement leads to a dead end.

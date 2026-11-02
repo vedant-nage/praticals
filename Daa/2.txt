@@ -1,0 +1,234 @@
+Part 2: Practical Write-up
+1. Aim
+To implement Huffman Encoding using a greedy strategy in Python for lossless data compression.
+2. Theory
+Huffman Encoding is a lossless data compression technique that assigns variable-length binary codes to characters based on their frequencies.
+
+Characters that occur more frequently are assigned shorter codes, while characters that occur less frequently are assigned longer codes.
+
+It uses a greedy strategy by repeatedly selecting the two nodes with the lowest frequencies and merging them into a new node.
+
+The process continues until a single tree, called the Huffman tree, is formed.
+3. Algorithm
+1. Start.
+2. Accept a string from the user.
+3. Calculate the frequency of each character.
+4. Create a priority queue containing each character and its frequency.
+5. Remove the two nodes with the lowest frequencies.
+6. Merge these nodes into a new node whose frequency is their sum.
+7. Insert the new node back into the priority queue.
+8. Repeat steps 5–7 until only one node remains.
+9. Traverse the Huffman tree:
+   - Assign 0 to the left edge.
+   - Assign 1 to the right edge.
+10. Generate the binary code for each character.
+11. Encode the input string using the generated codes.
+12. Display the Huffman codes and encoded string.
+13. Stop.
+4. Sample Input
+AABBC
+
+
+5. Sample Output
+Huffman Codes:
+A: 0
+B: 11
+C: 10
+
+Encoded string: 00111110
+
+
+6. Time and Space Complexity
+Let n be the number of characters in the input string and k be the number of distinct characters.
+Operation	Complexity
+Frequency calculation	O(n)
+Building the Huffman tree	O(k log k)
+Generating codes	O(k)
+Overall time complexity	O(n + k log k)
+Auxiliary space complexity	O(k)
+
+7. Applications
+- File compression
+- ZIP and other compression formats
+- Image compression
+- Data transmission
+- Efficient storage of frequently occurring symbols
+8. Result
+Huffman Encoding was successfully implemented using a greedy strategy in Python. The program generates variable-length binary codes based on character frequencies and encodes the input string for lossless compression.
+
+
+
+
+
+////
+
+# Huffman Encoding: Explanation and Viva Questions
+
+## 1. Explanation of the program
+
+Huffman Encoding is a lossless data compression algorithm. It reduces the number of bits required to represent data by assigning shorter binary codes to frequently occurring characters and longer codes to less frequent characters.
+
+The algorithm uses a greedy strategy: at every step, it selects the two characters or nodes with the lowest frequencies and combines them.
+
+### Example
+
+Consider the input string:
+
+`AABBC`
+
+Step 1: Calculate character frequencies
+
+| Character | Frequency |
+| --------- | --------- |
+| A         | 2         |
+| B         | 2         |
+| C         | 1         |
+
+Step 2: Build the Huffman tree
+
+First, select the two lowest frequencies: C (1) and A (2).
+
+Combine them to create a node with frequency 3.
+
+Next, combine that node with B (2). The resulting tree is:
+
+```
+        (5)
+       /   \
+     B(2)  (3)
+          /   \
+        C(1)  A(2)
+```
+
+Step 3: Assign binary codes
+
+- Left edge = 0
+- Right edge = 1
+
+The resulting codes are:
+
+| Character | Huffman code |
+| --------- | ------------ |
+| B         | 0            |
+| C         | 10           |
+| A         | 11           |
+
+Step 4: Encode the string
+
+For `AABBC`:
+
+`11 11 0 0 10`
+
+Encoded string: `11110010`
+
+The exact codes can differ depending on how equal-frequency nodes are selected, but the encoding remains valid.
+
+## 2. Explanation of important Python statements
+
+| Statement                      | Explanation                                        |
+| ------------------------------ | -------------------------------------------------- |
+| `Counter(text)`                | Counts the frequency of each character.            |
+| `heapq.heapify(heap)`          | Converts the list into a min-heap.                 |
+| `heapq.heappop(heap)`          | Removes the node with the lowest frequency.        |
+| `heapq.heappush(heap, merged)` | Inserts a merged node into the heap.               |
+| `generate_codes()`             | Traverses the Huffman tree to assign binary codes. |
+| `code + "0"`                   | Appends 0 when moving to the left child.           |
+| `code + "1"`                   | Appends 1 when moving to the right child.          |
+
+## 3. Viva Questions and Answers
+
+### Basic questions
+
+1\. What is Huffman Encoding?
+
+Huffman Encoding is a lossless data compression technique that assigns variable-length binary codes to characters based on their frequencies.
+
+2\. What is a greedy algorithm?
+
+A greedy algorithm makes the locally optimal choice at each step in the hope of finding a globally optimal solution.
+
+3\. Why is Huffman Encoding called a greedy algorithm?
+
+Because it repeatedly selects the two nodes with the lowest frequencies and merges them.
+
+4\. What is lossless compression?
+
+Lossless compression reduces the size of data without losing any information. The original data can be reconstructed exactly.
+
+5\. What is a Huffman tree?
+
+A binary tree used to generate Huffman codes. Each leaf node represents a character, and each internal node represents the combined frequency of its children.
+
+### Algorithm-related questions
+
+6\. Why do we use a min-heap?
+
+A min-heap allows us to efficiently retrieve the two nodes with the smallest frequencies.
+
+7\. What is the role of character frequency?
+
+Frequency determines the length of the code assigned to a character. More frequent characters generally receive shorter codes.
+
+8\. Why are left and right edges assigned 0 and 1?
+
+This creates a unique binary representation for every character. The choice of which side gets 0 or 1 is arbitrary.
+
+9\. What is a prefix code?
+
+A prefix code is a code in which no character's code is the prefix of another character's code.
+
+10\. Why is Huffman Encoding prefix-free?
+
+Because each character is represented by a leaf node in the Huffman tree. A leaf cannot be an ancestor of another leaf.
+
+### Complexity-related questions
+
+11\. What is the time complexity of Huffman Encoding?
+
+The overall time complexity of the given program is:
+
+\\[ O(n+k\log k) \\]
+
+where `n` is the input length and `k` is the number of distinct characters.
+
+12\. What is the space complexity?
+
+The auxiliary space complexity is O(k) for the frequency table, heap, and Huffman tree, excluding the output codes and encoded string.
+
+13\. What is the complexity of building the Huffman tree?
+
+O(k log k), because we perform heap operations for each of the `k` distinct characters.
+
+### Practical-based questions
+
+14\. What happens if all characters have the same frequency?
+
+The algorithm still generates valid prefix-free codes. The exact code assignments may differ depending on the order in which equal-frequency nodes are selected.
+
+15\. What happens if the input contains only one unique character?
+
+The program assigns that character the code `0`, ensuring that it has a non-empty code.
+
+16\. Can Huffman Encoding be used for text compression?
+
+Yes. It is commonly used in file compression and other applications where frequently occurring symbols can be represented with fewer bits.
+
+17\. What is the main advantage of Huffman Encoding?
+
+It produces an optimal prefix code when character frequencies are known, minimizing the total number of bits needed to represent the characters.
+
+18\. What is the main limitation of Huffman Encoding?
+
+The frequency table and tree must also be stored or transmitted so that the encoded data can be decoded. For small inputs, this overhead may outweigh the compression benefit.
+
+### Most important questions to prepare
+
+Focus on these five:
+
+1. What is Huffman Encoding?
+2. Why is it a greedy algorithm?
+3. Why do we use a min-heap?
+4. What is a prefix-free code?
+5. Explain the time and space complexity.
+
+These questions cover the central idea, implementation, and analysis of the practical.

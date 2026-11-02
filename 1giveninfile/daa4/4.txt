@@ -1,0 +1,42 @@
+2. Practical Write-up
+Aim
+To solve the 0-1 Knapsack problem using dynamic programming and maximize the total value without exceeding the knapsack capacity.
+Theory
+In the 0-1 Knapsack problem, each item has a weight and a value. An item must be either selected completely or not selected; fractions are not allowed.
+
+Dynamic programming solves the problem by considering items one at a time and storing the best value for each possible capacity.
+
+The recurrence relation is:
+\[
+DP[i][w]=
+\begin{cases}
+DP[i-1][w], & \text{if } weight_i>w\\
+\max(DP[i-1][w],\ value_i+DP[i-1][w-weight_i]), & \text{otherwise}
+\end{cases}
+\]
+
+Methods and Terms Used
+- Dynamic programming: Solves a problem by storing results of smaller subproblems.
+- State: dp[i][w] represents the best value using the first i items with capacity w.
+- Base case: With zero items or zero capacity, the maximum value is zero.
+- Choice: For each item, compare excluding it with including it if it fits.
+- Backtracking: Trace through the DP table to identify selected items.
+- Time complexity: \(O(nW)\), where n is the number of items and W is the capacity.
+- Space complexity: \(O(nW)\) for the DP table.
+Conclusion
+The 0-1 Knapsack problem was solved using dynamic programming. The algorithm calculates the maximum achievable value for the given capacity and identifies which items are selected.
+3. How to Explain It
+“Each item has a weight and a value. The knapsack has a fixed capacity, and each item can either be taken completely or left behind.
+
+I create a two-dimensional DP table. dp[i][w] stores the maximum value possible using the first i items when the capacity is w.
+
+For each item and capacity, I compare two choices:
+- Exclude the item: keep the best value from the previous row.
+- Include the item: add its value to the best result for the remaining capacity, if it fits.
+I store the larger of these two values. After filling the table, dp[n][capacity] contains the maximum value. I then trace backward through the table to find the selected items.
+
+For the sample, items with weights 2 and 3 have values 3 and 4. They fit exactly into capacity 5, so the maximum value is 7.
+
+The time and space complexities are both \(O(nW)\), where n is the number of items and W is the knapsack capacity.”
+
+Key viva distinction: In 0-1 Knapsack, items cannot be divided. That is why choosing the highest value-to-weight ratio greedily is not guaranteed to give the optimal result.

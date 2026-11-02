@@ -1,0 +1,159 @@
+
+
+2. Practical Write-up
+https://remix.ethereum.org/
+
+Aim
+To write and deploy a smart contract on a test network that allows a customer to deposit money, withdraw money, and view the account balance.
+Theory
+A smart contract is a program stored and executed on a blockchain. This contract represents a basic customer bank account using Ether (ETH).
+- Deposit: The deposit() function is payable, allowing ETH to be sent to the contract.
+- Withdraw: The withdraw() function transfers ETH from the contract to the account owner. It checks the caller and verifies that sufficient funds are available.
+- Show balance: The showBalance() function returns the contract’s current balance in wei. One ETH equals \(10^{18}\) wei.
+The contract stores the address that deployed it as the owner. Only that address can withdraw funds.
+Conclusion
+The smart contract implements deposit, withdrawal, and balance-checking operations. It also restricts withdrawals to the account owner and prevents withdrawals exceeding the contract’s balance.
+3. How to Explain It
+You can deploy and test it using Remix IDE:
+1. Open Remix and create a file named CustomerBank.sol.
+2. Paste the code and compile it using a Solidity compiler version 0.8.20 or compatible.
+3. In Deploy & Run Transactions, select Injected Provider – MetaMask and connect MetaMask to a test network, such as Sepolia.
+4. Deploy the contract. Use test ETH only.
+5. To deposit, enter an amount in the Value field, select ether as the unit, and call deposit.
+6. Call showBalance to view the contract balance in wei.
+7. To withdraw, enter the amount in wei and call withdraw. Only the deploying account can withdraw.
+Note: This is an educational example, not a production banking contract. It handles ETH on a test network, not real-world bank deposits or fiat currency.
+
+
+
+
+///
+## 1. Code for the Question
+
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract CustomerBank {
+    address public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    // Deposit ETH into the contract
+    function deposit() public payable {
+        require(msg.value > 0, "Deposit must be greater than zero");
+    }
+
+    // Withdraw ETH from the contract
+    function withdraw(uint256 amount) public {
+        require(msg.sender == owner, "Only account owner can withdraw");
+        require(amount > 0, "Amount must be greater than zero");
+        require(address(this).balance >= amount, "Insufficient balance");
+
+        payable(owner).transfer(amount);
+    }
+
+    // Show the contract's balance in wei
+    function showBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
+}
+```
+
+## 2. Practical Write-up
+
+### Aim
+
+To create and deploy a Solidity smart contract on a test network that allows a customer to deposit ETH, withdraw ETH, and check the account balance.
+
+### Theory
+
+A smart contract is a program deployed on a blockchain. It executes when a user calls one of its functions.
+
+This contract stores the address of the person who deploys it as the owner. It supports three operations:
+
+- Deposit: Accepts ETH sent to the contract.
+- Withdraw: Allows only the owner to transfer ETH from the contract, provided the amount is valid and sufficient funds are available.
+- Show balance: Returns the contract’s current ETH balance in wei.
+
+### Conclusion
+
+The smart contract implements deposit, withdrawal, and balance-checking operations. It restricts withdrawals to the deploying account and checks that the contract has enough funds before transferring ETH.
+
+## 3. How to Explain It
+
+### What each part means
+
+- `// SPDX-License-Identifier: MIT`\
+  Declares the software license for the contract.
+- `pragma solidity ^0.8.20;`\
+  Specifies the Solidity compiler version range.
+- `contract CustomerBank { ... }`\
+  Defines the smart contract named `CustomerBank`.
+- `address public owner;`\
+  Stores the Ethereum address of the account that deploys the contract. `public` makes Solidity create a getter so the owner address can be read.
+- `constructor()`\
+  Runs only once, when the contract is deployed.
+- `owner = msg.sender;`\
+  `msg.sender` is the address that called the current function. During deployment, it is the deploying account, so that account becomes the owner.
+
+### Deposit function
+
+```
+function deposit() public payable {
+    require(msg.value > 0, "Deposit must be greater than zero");
+}
+```
+
+- `public` means the function can be called externally and from other contracts.
+- `payable` allows the function to receive ETH.
+- `msg.value` is the amount of ETH sent with the transaction, measured in wei.
+- `require(...)` checks a condition. If it is false, the transaction reverts.
+
+The contract’s balance increases when ETH is sent successfully with this function.
+
+### Withdraw function
+
+```
+function withdraw(uint256 amount) public {
+    require(msg.sender == owner, "Only account owner can withdraw");
+    require(amount > 0, "Amount must be greater than zero");
+    require(address(this).balance >= amount, "Insufficient balance");
+
+    payable(owner).transfer(amount);
+}
+```
+
+- `uint256 amount` is the withdrawal amount in wei.
+- `msg.sender == owner` ensures only the owner can withdraw.
+- `address(this).balance` is the ETH balance held by this contract.
+- `payable(owner)` converts the owner address into an address that can receive ETH.
+- `.transfer(amount)` sends the requested ETH to the owner. If the transfer fails, the transaction reverts.
+
+Important: This example does not track separate customer balances. It stores ETH in one contract balance and permits only the deploying owner to withdraw. It is a simplified educational example, not a production banking contract.
+
+### Show balance function
+
+```
+function showBalance() public view returns (uint256) {
+    return address(this).balance;
+}
+```
+
+- `view` means the function reads blockchain state but does not modify it.
+- `returns (uint256)` means it returns an unsigned integer.
+- `address(this).balance` returns the contract’s balance in wei.
+
+Conversion: `1 ETH = 1,000,000,000,000,000,000 wei` (`10^18` wei).
+
+### Example execution
+
+1. The owner deploys the contract.
+2. The owner deposits `0.1 ETH`.
+3. `showBalance()` returns `100000000000000000` wei.
+4. The owner withdraws `0.05 ETH`.
+5. `showBalance()` returns `50000000000000000` wei.
+
+On a test network, MetaMask confirms deployment and each deposit or withdrawal transaction. Reading the balance does not require a transaction fee.
